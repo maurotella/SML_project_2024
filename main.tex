@@ -8,6 +8,8 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{bm}
 \geometry{a4paper, total={5.6in,9in}}
 \addbibresource{bibl.bib}
 
@@ -97,10 +99,53 @@ between the ground truth and the robot estimated trajectory during an environmen
 
 \subsection{APE calculation}
 As anticipated in the previous section, the APE metric is based on the difference between the estimated robot 
-poses and the corresponding ground truth poses. Formally, let $x_{1:T}$ be the poses of the robot estimated by
-a SLAM algorithm from time step 1 to $T$, and let $x^*_{1:T}$ be the corresponding ground truth poses. 
+poses and the corresponding ground truth poses. 
 
-\clearpage
+Formally, let $\bm{x}_{1:T}$ be the poses of the robot estimated by
+a SLAM algorithm from time step 1 to $T$, and let $\bm{x}^*_{1:T}$ be the corresponding ground truth poses.
+
+Let $\delta_{i,j}$ be the relative transformation that moves the robot from pose $x_i$ to $x_j$:
+$$ \delta_{i,j}=x_j\ominus x_i $$
+$$ \delta^*_{i,j}=x^*_j\ominus x^*_i $$ 
+
+Let $trans(\cdot)\in\mathbb{R}^2$ be the function that extracts the translational (position) component from a 
+transformation, and let $rot(\cdot)\in\mathbb{R}^2$ extract the rotational (orientation) component as Euler angle.
+
+Finally, to compute the APE: 
+$$
+\begin{aligned}
+    \displaystyle
+    \text{APE} &= \underbrace{\frac{1}{N}\sum_{i,j}trans(\delta_{i,j}\ominus\delta^*_{i,j})^2}_{\text{ATE}}+
+                  \underbrace{\frac{1}{N}\sum_{i,j}rot(\delta_{i,j}\ominus\delta^*_{i,j})^2}_{\text{ARE}} \\
+\end{aligned}
+$$
+
+\subsection{Project goal}
+Typically, the APE is calculated a posteriori, after the robot has explored the entire environment. The main
+goal of this project is to propose a predictor for the SLAM performance, specifically the APE, before running 
+the algorithm or during its execution, using features derived from the input data or intermediate results.
+This type of prediction can improve the robustness and efficiency of autonomous mobile systems since the 
+position error (APE) can be used to correct the robot trajectory.
+
+The work in \cite{Luperto} proposes two main APE predictors, one based on linear regression, and another one
+based on a Gaussian Process via an RBF Kernel. Although Gaussian Process regression showed slightly better
+performance compared to linear regression model, the authors preferred linear regression because they
+considered it a more interpretable model. In both cases, a feature extractor is used \cite{Luperto2} obtaining
+a set of structural features to represent the environment as a vector, which is then passed to the model.
+
+
+\section{Model}
+In this project, a modern Convolutional Neural Network (CNN) is used, in order to delegate the feature 
+extraction to the model and directly using the environment floorplan image.
+Formaly, the model $h$ we want to learn can be expressed as follows:
+$$ h: [0,255]^{n,n} \times \mathbb{R}^+ \rightarrow \mathbb{R}^2 $$
+Where $[0,255]^{n,n}$ is a floorplan image, encoded as a $n\times n$ grayscale image, $\mathbb{R}^+$ is the
+area of the floorplan expressed in $m^2$ and $\mathbb{R}^2$ contains ATE ($m$)
+and ARE ($rad$).
+
+\subsection{Data preprocessing}
+
+\clearpageS
 \printbibliography
 
 \end{document}

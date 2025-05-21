@@ -80,6 +80,116 @@
       \verb 10.1007/s10514-009-9155-6
       \endverb
     \endentry
+    \entry{Luperto2}{inproceedings}{}{}
+      \name{author}{2}{}{%
+        {{hash=fed2136f06b21cbfdae2ef1b5b4edf8b}{%
+           family={Luperto},
+           familyi={L\bibinitperiod},
+           given={Matteo},
+           giveni={M\bibinitperiod}}}%
+        {{hash=f8ee40e36cc6ccb3b5cbd50454d3dea4}{%
+           family={Amigoni},
+           familyi={A\bibinitperiod},
+           given={Francesco},
+           giveni={F\bibinitperiod}}}%
+      }
+      \name{editor}{4}{}{%
+        {{hash=5dd3bccdfa4d543ceace22454ab3548f}{%
+           family={Strand},
+           familyi={S\bibinitperiod},
+           given={Marcus},
+           giveni={M\bibinitperiod}}}%
+        {{hash=4f51b188bf5e37c030c926d14f424d0e}{%
+           family={Dillmann},
+           familyi={D\bibinitperiod},
+           given={Rüdiger},
+           giveni={R\bibinitperiod}}}%
+        {{hash=0441759bcd75b2cc1328059b7e2794ee}{%
+           family={Menegatti},
+           familyi={M\bibinitperiod},
+           given={Emanuele},
+           giveni={E\bibinitperiod}}}%
+        {{hash=6fd6c3655929387182f40160e613fda9}{%
+           family={Ghidoni},
+           familyi={G\bibinitperiod},
+           given={Stefano},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Cham}%
+      }
+      \list{publisher}{1}{%
+        {Springer International Publishing}%
+      }
+      \strng{namehash}{c6e4260cb555b0452bd7d1ec6cc863c4}
+      \strng{fullhash}{c6e4260cb555b0452bd7d1ec6cc863c4}
+      \strng{fullhashraw}{c6e4260cb555b0452bd7d1ec6cc863c4}
+      \strng{bibnamehash}{c6e4260cb555b0452bd7d1ec6cc863c4}
+      \strng{authorbibnamehash}{c6e4260cb555b0452bd7d1ec6cc863c4}
+      \strng{authornamehash}{c6e4260cb555b0452bd7d1ec6cc863c4}
+      \strng{authorfullhash}{c6e4260cb555b0452bd7d1ec6cc863c4}
+      \strng{authorfullhashraw}{c6e4260cb555b0452bd7d1ec6cc863c4}
+      \strng{editorbibnamehash}{99abb164645cc5e1acc9f47b36e29438}
+      \strng{editornamehash}{99abb164645cc5e1acc9f47b36e29438}
+      \strng{editorfullhash}{df3b952f659066fde05e595c251dfeeb}
+      \strng{editorfullhashraw}{df3b952f659066fde05e595c251dfeeb}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Metric maps, like occupancy grids, are the most common way to represent indoor environments in mobile robotics. Although accurate for navigation and localization, metric maps contain little knowledge about the structure of the buildings they represent. However, if explicitly identified and represented, this knowledge can be exploited in several tasks, such as semantic mapping, place categorization, path planning, human robot communication, and task allocation. The layout of a building is an abstract geometrical representation that models walls as line segments and rooms as polygons. In this paper, we propose a method to reconstruct two-dimensional layouts of buildings starting from the corresponding metric maps. In this way, our method is able to find regularities within a building, abstracting from the possibly noisy information of the metric map. Experimental results show that our approach performs effectively and robustly on different types of input metric maps, characterized by noise, clutter, and partial data.}
+      \field{booktitle}{Intelligent Autonomous Systems 15}
+      \field{isbn}{978-3-030-01370-7}
+      \field{title}{Extracting Structure of Buildings Using Layout Reconstruction}
+      \field{year}{2019}
+      \field{pages}{652\bibrangedash 667}
+      \range{pages}{16}
+    \endentry
+    \entry{Luperto}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=fed2136f06b21cbfdae2ef1b5b4edf8b}{%
+           family={Luperto},
+           familyi={L\bibinitperiod},
+           given={Matteo},
+           giveni={M\bibinitperiod}}}%
+        {{hash=ab9bcfceef6ed87d9b89e56200444f2a}{%
+           family={Castelli},
+           familyi={C\bibinitperiod},
+           given={Valerio},
+           giveni={V\bibinitperiod}}}%
+        {{hash=f8ee40e36cc6ccb3b5cbd50454d3dea4}{%
+           family={Amigoni},
+           familyi={A\bibinitperiod},
+           given={Francesco},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{5d285e7123d9613e909bfe2b061a2e0f}
+      \strng{fullhash}{5d285e7123d9613e909bfe2b061a2e0f}
+      \strng{fullhashraw}{5d285e7123d9613e909bfe2b061a2e0f}
+      \strng{bibnamehash}{5d285e7123d9613e909bfe2b061a2e0f}
+      \strng{authorbibnamehash}{5d285e7123d9613e909bfe2b061a2e0f}
+      \strng{authornamehash}{5d285e7123d9613e909bfe2b061a2e0f}
+      \strng{authorfullhash}{5d285e7123d9613e909bfe2b061a2e0f}
+      \strng{authorfullhashraw}{5d285e7123d9613e909bfe2b061a2e0f}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{journaltitle}{CoRR}
+      \field{title}{Predicting Performance of {SLAM} Algorithms}
+      \field{volume}{abs/2109.02329}
+      \field{year}{2021}
+      \verb{eprint}
+      \verb 2109.02329
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/2109.02329
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/2109.02329
+      \endverb
+    \endentry
     \entry{Stachniss2016}{inbook}{}{}
       \name{author}{3}{}{%
         {{hash=5d87e0c36213202151bff64fdd9346a3}{%

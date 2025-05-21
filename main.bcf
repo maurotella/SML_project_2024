@@ -2374,6 +2374,8 @@
   <bcf:section number="0">
     <bcf:citekey order="1" intorder="1">Stachniss2016</bcf:citekey>
     <bcf:citekey order="2" intorder="1">APE</bcf:citekey>
+    <bcf:citekey order="3" intorder="1">Luperto</bcf:citekey>
+    <bcf:citekey order="4" intorder="1">Luperto2</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">
