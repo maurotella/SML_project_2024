@@ -2,16 +2,17 @@
 
 % Packages
 \usepackage[utf8]{inputenc}
-\usepackage{biblatex}
+\usepackage[backend=biber]{biblatex}
+\addbibresource{bibl.bib}
 \usepackage[english]{babel}
 \usepackage{amsmath, amssymb}
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{geometry}
+\usepackage{subcaption}
 \usepackage{amsmath}
 \usepackage{bm}
 \geometry{a4paper, total={5.6in,9in}}
-\addbibresource{bibl.bib}
 
 % Title and Author
 \title{SLAM performance predicition}
@@ -36,6 +37,9 @@ submitted by me or any other person for assessment on this or any other course o
 \end{minipage}
 \end{center}
 \vspace{2em}
+
+\tableofcontents 
+\newpage
 
 \section{Introduction}
 In the field of autonomous mobile robot, the Simultaneous Localization And Mapping (SLAM) represents
@@ -134,16 +138,96 @@ considered it a more interpretable model. In both cases, a feature extractor is 
 a set of structural features to represent the environment as a vector, which is then passed to the model.
 
 
+\section{Data}
+\subsection{Dataset composition}
+The dataset is composed of 4402 datapoints. Each datapoint is represented as a tuple $(M, a, ate, are)$, where:
+\begin{enumerate}
+    \item $M\in[0,255]^{n\times n}$: floorplan images representend as grayscale maps that a robot has obtained 
+        during its navigation. Some examples are reported in Figure \ref{fig:floorplans};
+    \item $a\in\mathbb{R}^+$: area measurements of the floorplan images, expressed in $m^2$;
+    \item $ate\in\mathbb{R}^+$: ATE values, expressed in $m$;
+    \item $are\in\mathbb{R}^+$: ARE values, expressed in $rad$;
+\end{enumerate}
+\begin{figure}[h]
+        \centering
+        \begin{minipage}{0.32\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{figures/floorplan1.png}
+        \end{minipage}
+        \hfill
+        \begin{minipage}{0.32\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{figures/floorplan2.png}
+        \end{minipage}
+        \hfill
+        \begin{minipage}{0.32\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{figures/floorplan3.png}
+        \end{minipage}
+        \caption{Examples of grayscale floorplan images used as input; the white pixels represent the
+        free area, the black pixels the obstacles and the gray pixels the unknown area.\label{fig:floorplans}}
+    \end{figure}
+
+\subsection{Data preprocessing}
+
+Evaluating the APE values shows that they are mainly distributed towards zero, with a significant presence of 
+outliers, especially for ATE values. Figure \ref{fig:dataBoxPlot} shows the box plot with highlighted the 
+0.99-quantile and the first value such that its Z-score is greater or equal to 3.5; the Z-score of a number 
+$x$ is $Z = \frac{x-\overline{x}}{\sigma}$ where $\overline{x}$ is the mean and $\sigma$ the standard deviation.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{figures/APE_box.pdf}
+    \vspace{-2em}
+    \captionsetup{width=0.95\linewidth}
+    \caption{Box plot of the ATE (top) and ARE (bottom) values; is also shown the 0.99-quantile (red line) and 
+    the first value with a z-score equal to 3.5 (blue line).\label{fig:dataBoxPlot}}
+\end{figure}
+
+\noindent
+To facilitate our models to learn each quantity, the following strategies have been applied:
+\begin{itemize}
+    \item Outliers cleaning: data points with ATE or ARE values above the $0.99$-quantile or with a Z-score 
+    greater than or equal to 3.5 have been removed to reduce the impact of extreme outliers;
+    \item Rescaling: ATE, ARE and area values has been rescaled to $[0,1]$;
+    \begin{figure}[h]
+        \raggedleft
+        \begin{minipage}{0.92\textwidth}
+            \includegraphics[width=\linewidth]{figures/APE_norm_hist.pdf}
+        \end{minipage}
+        \vspace{-1em}
+        \caption{Dataset values after the rescaling to $[0,1]$.}
+    \end{figure}
+    \item Image cropping: each map has been cropped to remove unnecessary borders, focusing only on the relevant 
+        area to reduce input size and eliminate irrelevant background; the crop is always squared in order to
+        mantain this property to all floorplan images.
+        \begin{figure}[h]
+            \centering
+            \begin{minipage}{0.92\textwidth}
+                \hspace{4em}
+                \begin{minipage}{0.35\textwidth}
+                    \includegraphics[width=\linewidth]{figures/notSquaredMap.png}
+                \end{minipage}
+                \hspace{2em}
+                \begin{minipage}{0.35\textwidth}
+                    \includegraphics[width=\linewidth]{figures/squaredMap.png}
+                \end{minipage}
+                \hfill
+            \end{minipage}
+            \caption{A floorplan (left) and its bounding square crop (right).}
+        \end{figure}
+\end{itemize}
+
+\subsection{Data augmentation}
+
 \section{Model}
-In this project, a modern Convolutional Neural Network (CNN) is used, in order to delegate the feature 
-extraction to the model and directly using the environment floorplan image.
-Formaly, the model $h$ we want to learn can be expressed as follows:
-$$ h: [0,255]^{n,n} \times \mathbb{R}^+ \rightarrow \mathbb{R}^2 $$
+In this project, different architectures are used, all based on Convolutional Neural Network (CNN) in order 
+to delegate the feature extraction to the model and directly using the environment floorplan image.
+Formally, the model $h$ we want to learn can be expressed as follows:
+$$ h: [0,255]^{n\times n} \times \mathbb{R}^+ \rightarrow \mathbb{R}^2 $$
 Where $[0,255]^{n,n}$ is a floorplan image, encoded as a $n\times n$ grayscale image, $\mathbb{R}^+$ is the
 area of the floorplan expressed in $m^2$ and $\mathbb{R}^2$ contains ATE ($m$)
 and ARE ($rad$).
 
-\subsection{Data preprocessing}
 
 \clearpage
 \printbibliography

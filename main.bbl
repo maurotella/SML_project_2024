@@ -1,5 +1,5 @@
 % $ biblatex auxiliary file $
-% $ biblatex bbl format version 3.3 $
+% $ biblatex bbl format version 3.2 $
 % Do not modify the above lines!
 %
 % This is an auxiliary file used by the 'biblatex' package.
@@ -18,8 +18,8 @@
 
 
 \refsection{0}
-  \datalist[entry]{nty/global//global/global/global}
-    \entry{APE}{article}{}{}
+  \datalist[entry]{nty/global//global/global}
+    \entry{APE}{article}{}
       \name{author}{7}{}{%
         {{hash=24bb10d604201142189797017a7ab0a7}{%
            family={Kümmerle},
@@ -59,12 +59,10 @@
       }
       \strng{namehash}{aac7aac3d714f5cee63a2e6fa9882ced}
       \strng{fullhash}{1b3960e9617890631b80c0a915323771}
-      \strng{fullhashraw}{1b3960e9617890631b80c0a915323771}
       \strng{bibnamehash}{aac7aac3d714f5cee63a2e6fa9882ced}
       \strng{authorbibnamehash}{aac7aac3d714f5cee63a2e6fa9882ced}
       \strng{authornamehash}{aac7aac3d714f5cee63a2e6fa9882ced}
       \strng{authorfullhash}{1b3960e9617890631b80c0a915323771}
-      \strng{authorfullhashraw}{1b3960e9617890631b80c0a915323771}
       \field{sortinit}{K}
       \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
       \field{labelnamesource}{author}
@@ -80,7 +78,7 @@
       \verb 10.1007/s10514-009-9155-6
       \endverb
     \endentry
-    \entry{Luperto2}{inproceedings}{}{}
+    \entry{Luperto2}{inproceedings}{}
       \name{author}{2}{}{%
         {{hash=fed2136f06b21cbfdae2ef1b5b4edf8b}{%
            family={Luperto},
@@ -123,16 +121,13 @@
       }
       \strng{namehash}{c6e4260cb555b0452bd7d1ec6cc863c4}
       \strng{fullhash}{c6e4260cb555b0452bd7d1ec6cc863c4}
-      \strng{fullhashraw}{c6e4260cb555b0452bd7d1ec6cc863c4}
       \strng{bibnamehash}{c6e4260cb555b0452bd7d1ec6cc863c4}
       \strng{authorbibnamehash}{c6e4260cb555b0452bd7d1ec6cc863c4}
       \strng{authornamehash}{c6e4260cb555b0452bd7d1ec6cc863c4}
       \strng{authorfullhash}{c6e4260cb555b0452bd7d1ec6cc863c4}
-      \strng{authorfullhashraw}{c6e4260cb555b0452bd7d1ec6cc863c4}
       \strng{editorbibnamehash}{99abb164645cc5e1acc9f47b36e29438}
       \strng{editornamehash}{99abb164645cc5e1acc9f47b36e29438}
       \strng{editorfullhash}{df3b952f659066fde05e595c251dfeeb}
-      \strng{editorfullhashraw}{df3b952f659066fde05e595c251dfeeb}
       \field{sortinit}{L}
       \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
       \field{labelnamesource}{author}
@@ -145,7 +140,7 @@
       \field{pages}{652\bibrangedash 667}
       \range{pages}{16}
     \endentry
-    \entry{Luperto}{article}{}{}
+    \entry{Luperto}{article}{}
       \name{author}{3}{}{%
         {{hash=fed2136f06b21cbfdae2ef1b5b4edf8b}{%
            family={Luperto},
@@ -165,12 +160,10 @@
       }
       \strng{namehash}{5d285e7123d9613e909bfe2b061a2e0f}
       \strng{fullhash}{5d285e7123d9613e909bfe2b061a2e0f}
-      \strng{fullhashraw}{5d285e7123d9613e909bfe2b061a2e0f}
       \strng{bibnamehash}{5d285e7123d9613e909bfe2b061a2e0f}
       \strng{authorbibnamehash}{5d285e7123d9613e909bfe2b061a2e0f}
       \strng{authornamehash}{5d285e7123d9613e909bfe2b061a2e0f}
       \strng{authorfullhash}{5d285e7123d9613e909bfe2b061a2e0f}
-      \strng{authorfullhashraw}{5d285e7123d9613e909bfe2b061a2e0f}
       \field{sortinit}{L}
       \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
       \field{labelnamesource}{author}
@@ -190,7 +183,7 @@
       \verb https://arxiv.org/abs/2109.02329
       \endverb
     \endentry
-    \entry{Stachniss2016}{inbook}{}{}
+    \entry{Stachniss2016}{inbook}{}
       \name{author}{3}{}{%
         {{hash=5d87e0c36213202151bff64fdd9346a3}{%
            family={Stachniss},
@@ -228,16 +221,13 @@
       }
       \strng{namehash}{b5b5070dc9a1ebf646dacb1c5bd93acb}
       \strng{fullhash}{b5b5070dc9a1ebf646dacb1c5bd93acb}
-      \strng{fullhashraw}{b5b5070dc9a1ebf646dacb1c5bd93acb}
       \strng{bibnamehash}{b5b5070dc9a1ebf646dacb1c5bd93acb}
       \strng{authorbibnamehash}{b5b5070dc9a1ebf646dacb1c5bd93acb}
       \strng{authornamehash}{b5b5070dc9a1ebf646dacb1c5bd93acb}
       \strng{authorfullhash}{b5b5070dc9a1ebf646dacb1c5bd93acb}
-      \strng{authorfullhashraw}{b5b5070dc9a1ebf646dacb1c5bd93acb}
       \strng{editorbibnamehash}{0bdecfa7d3574a8d04c99af970a7506e}
       \strng{editornamehash}{0bdecfa7d3574a8d04c99af970a7506e}
       \strng{editorfullhash}{0bdecfa7d3574a8d04c99af970a7506e}
-      \strng{editorfullhashraw}{0bdecfa7d3574a8d04c99af970a7506e}
       \field{sortinit}{S}
       \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
       \field{labelnamesource}{author}
