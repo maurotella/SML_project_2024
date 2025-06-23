@@ -9,3 +9,4 @@
 \contentsline {subsection}{\numberline {2.2}Data preprocessing}{4}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}Data augmentation}{6}{subsection.2.3}%
 \contentsline {section}{\numberline {3}Model}{6}{section.3}%
+\contentsline {section}{\numberline {4}AlexNet}{6}{section.4}%
