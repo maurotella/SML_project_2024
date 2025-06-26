@@ -1,0 +1,49 @@
+\begin{tikzpicture}
+
+    \definecolor{color1}{HTML}{1f77b4}   % blue
+    \definecolor{color2}{HTML}{ff7f0e}   % orange
+    \definecolor{color3}{HTML}{2ca02c}   % green
+    \definecolor{color4}{HTML}{d62728}   % red
+    \definecolor{color5}{HTML}{9467bd}   % purple
+    \definecolor{color6}{HTML}{8c564b}   % brown
+    \definecolor{color7}{HTML}{e377c2}   % pink
+    \definecolor{color8}{HTML}{bcbd22}   % olive
+    
+    \colorlet{case}{black}
+    
+    \newcommand{\setColor}[1]{
+        \ifthenelse{#1=0}{\colorlet{case}{color1}}{}
+        \ifthenelse{#1=1}{\colorlet{case}{color2}}{}
+        \ifthenelse{#1=2}{\colorlet{case}{color3}}{}
+        \ifthenelse{#1=3}{\colorlet{case}{color4}}{}
+        \ifthenelse{#1=4}{\colorlet{case}{color5}}{}
+        \ifthenelse{#1=5}{\colorlet{case}{color6}}{}
+        \ifthenelse{#1=6}{\colorlet{case}{color7}}{}
+        \ifthenelse{#1=7}{\colorlet{case}{color8}}{}
+    }
+
+    \foreach \y in {-2,-1.9,...,4} {
+        \draw [color=black!20] (-1,\y) -- (12,\y);
+    }
+
+    \def\H{5}
+    \def\W{5}
+
+    \def\x1{0}
+    \def\y1{0}
+    \def\lato{2}
+    \def\offset{0.4}
+    \foreach \i in {0,...,3} {
+        \pgfmathtruncatemacro{\ii}{3-\i}
+        \pgfmathsetmacro{\t}{\ii*\offset}
+        \pgfmathsetmacro{\step}{}
+        %\draw (\x1-\t,\y1+\t) rectangle (\x1-\t+\lato,\y1+\t+\lato);
+        \foreach \h in {1,...,\H} {
+            \draw (\x1-\t,\y1+\t+) -- (\x1-\t+\lato,\y1+\t);
+        }
+        \foreach \w in {1,...,\W} {
+
+        }
+    }
+
+\end{tikzpicture}

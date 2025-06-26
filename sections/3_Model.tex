@@ -7,7 +7,7 @@ distinct models were used:
     \item AlexNet \cite{NIPS2012_c399862d}, one of the first successful architectures in the field of CNNs;
     \item MobileNetV3 \cite{howard2019searchingmobilenetv3}, the state of the art of
         lightweight CNN architectures designed for mobile and embedded vision applications;
-    \item SqueezeNetV2 \cite{iandola2016squeezenetalexnetlevelaccuracy50x}, an ultra-compact CNN with 
+    \item SqueezeNet \cite{iandola2016squeezenetalexnetlevelaccuracy50x}, an ultra-compact CNN with 
         few parameters, offering decent accuracy for low-memory device;
 \end{enumerate}
 
@@ -19,7 +19,7 @@ is the area of the floorplan expressed in $m^2$, and $\mathbb{R}^2$ contains ATE
 
 
 
-\subsection{AlexNet}
+\subsection{AlexNet} \label{sec:AlexNet}
 To begin, a model based on AlexNet was chosen, one of the first successful architectures in the field of
 convolutional neural networks. AlexNet consists of several convolutional layers followed by fully 
 connected layers, using ReLU activations and max-pooling. The relatively large number of layers without 
@@ -47,7 +47,7 @@ Two main sections can be outlined:
 Note that the first layer of the regression head has size 4097 instead of 4096, since the area of the 
 floorplan is added as an input concatenated to the feature vector extracted by the CNN. This is because
 otherwise the scaling done by the model in the initial stage would cause the true value of the area to
-be lost.
+be lost. This procedure was done on all three proposed models.
 
 \subsubsection{Dropout}
 To reduce overfitting, the dropout technique \cite{srivastava2014dropout} is applied within the fully
@@ -113,12 +113,13 @@ $$\begin{matrix}
     \end{tabular}
 \end{table}
 
-\subsubsection{Squeeze and Excitation}
+\subsubsection{Squeeze and Excitation}\label{sec:SqueezeExcitation}
 Introduced in \cite{hu2019squeezeandexcitationnetworks}, Squeeze and Excitation is a technique that focuses on
 the interdependencies between channels. As the name suggests, there are two phases:
 \begin{enumerate}
     \item Squeeze phase: each channel is squeezed into a single value through the use of averge pooling.
-        The output of this phase is then a vector $\bm{z}$ of $C$ elements, where $C$ is the number of channels:
+        The output of this phase is then a vector $\bm{z}$ of $C$ elements, where $C$ is the number of
+        channels:
         $$ \bm{z} =\{z_1,\dots,z_C\} $$
         \begin{equation}
             z_c = \frac{1}{HW}\sum_{i=1}^{H}\sum_{j=1}^{W}u_c(i,j) \tag*{c=1,\dots,C}
@@ -131,17 +132,21 @@ the interdependencies between channels. As the name suggests, there are two phas
         The purpose of this phase is to capture the intricate dependencies among channels. The output of this 
         network is another vector $\bm{s}$ of the same dimensions of $\bm{z}$, containing the importance 
         weights for each channel.
-    \item Scale and combine phase: the importance weights vector $\bm{s}$ is used to rescale each channel of the 
-        original input by channel-wise multiplication ($*$):
+    \item Scale and combine phase: the importance weights vector $\bm{s}$ is used to rescale each channel of 
+        the original input by channel-wise multiplication ($*$):
         \begin{equation}
         \tilde{\bm{x}}_c = s_c * \bm{u}_c   \tag*{c=1,\dots,C}
         \end{equation}
-        where $\tilde{\bm{X}} = \{\tilde{\bm{x}}_1,\dots,\tilde{\bm{x}}_C\}$ is the final output.
+        where $\tilde{\bm{X}} = \{\tilde{\bm{x}}_1,\dots,\tilde{\bm{x}}_C\}$ is the final output. In this
+        way most important feature are highlighted and the less important ones are downplayed.
 \end{enumerate}
 
 \begin{figure}[H]
     \centering
     \resizebox{\textwidth}{!}{\input{tikz/excitation.tex}}
+    \captionsetup{width=0.94\linewidth}
+    \caption{A graphical representation of Squeeze and excitation; in this case a reduction ratio of $r=2$ 
+    is used with 8-channel feature maps.}
 \end{figure}
 
 \subsubsection{HardSwish Activation function}
@@ -149,14 +154,67 @@ To improve the accuracy of the neural networks ReLU was replaced by a new activa
 \textit{swish}, defined as:
 $$ \text{swish}\ x = x\cdot \sigma(x) $$
 where $\sigma$ is the sigmoid function $\sigma(x)=1/(1+e^{-x})$.
-However, despite swish improves accuracy, it is computationally expensive for mobile devices. To address this,
-MobileNetV3 introduces the \textit{HardSwish} activation function, which approximates swish while being more
-efficient to compute. HardSwish is defined as:
+However, despite swish improves accuracy, it is computationally expensive for mobile devices. To address 
+this, MobileNetV3 introduces the \textit{HardSwish} activation function, which approximates swish while 
+being more efficient to compute. HardSwish is defined as:
 $$ \text{\text{h-swish}}(x) = x \cdot \frac{\text{ReLU6}(x + 3)}{6} $$
-where $\text{ReLU6}(x) = \min(\max(0, x), 6)$. This function retains the benefits of swish but is faster and
-more suitable for deployment on resource-constrained hardware.
+where $\text{ReLU6}(x) = \min(\max(0, x), 6)$. This function retains the benefits of swish but is faster
+and more suitable for deployment on resource-constrained hardware.
 \begin{figure}[H]
     \centering
     \includegraphics[width=.6\textwidth]{figures/hswish.pdf}
     \caption{Swish and h-swish}
 \end{figure}
+
+\subsection{SqueezeNet}
+As final model SqueezeNet was choosen. SqueezeNet is an ultra-compact convolutional neural network
+architecture designed to achieve AlexNet-level accuracy with significantly fewer parameters, as the
+original paper title \quotes{AlexNet-level accuracy with 50x fewer parameters and <0.5MB model size} 
+\cite{iandola2016squeezenetalexnetlevelaccuracy50x} suggests; as proof of this, SqueezeNet v1.1, that
+was used, has \num{722378} params, $\sim$51.63 times less than AlexNet models described in section
+\ref{sec:AlexNet}. 
+The few parameters of SqueezeNet also led to a large reduction in power consumption and inference time,
+making it one of the most widely used architectures in various fields such as autonomous driving, IoT, 
+and mobile AI.
+
+Consider a convolutional layer formed only with $3\times 3$ filters. Its numbers of parameters is:
+$$ (\text{\# filters})\cdot(\text{\# input channels})\cdot(3\cdot 3) $$
+So, to maintain a small number of parameters in a CNN it is important to reduce both the number of filters
+and the number of input channels.
+The authors of \cite{iandola2016squeezenetalexnetlevelaccuracy50x}, following this reasoning, have employed
+three strategies:
+
+\begin{enumerate}
+    \item Replace most of $3\times 3$ filters with $1\times 1$ filter: in this way they reduce the numbers of 
+    $3\times 3$ filters by replacing them with $1\times 1$ filters that have 9 times fewer parameters;
+    \item Decrease the number of input channels of $3\times 3$ filters: to do so squeeze layers was used 
+    (similar but different from the squeeze phase described in secction \ref{sec:SqueezeExcitation});
+    \item Downsaple late in the network: in this way convolutional layers have large activation map
+        leading to higher accuracy \cite{he2014convolutionalneuralnetworksconstrained}; 
+\end{enumerate}
+\noindent
+To employ this three strategies Fire modules are introduced.
+
+\subsubsection{Fire modules}
+A Fire module consists of:
+\begin{itemize}
+    \item A squeeze convolution layer: it uses $s_{1\!\times\!1}$ filters $1\!\times\!1$ to squeeze all
+        the input channels into $s_{1\!\times\!1}$ single feature maps;
+    \item An expand layer: formed by $e_{1\!\times\!1}$ filters $1\!\times\!1$ and $e_{3\!\times\!3}$ 
+        filters $3\!\times\!3$; it takes as input the $s_{1\!\times\!1}$ feature maps and returns the
+        $e_{1\!\times\!1}+e_{3\!\times\!3}$ feature maps obtained from the convolutional filters of this 
+        layer. To limit the number of input channels of the $3\!\times\!3$ filters, Fire modules set 
+        $s_{1\!\times\!1}$ to be less than $e_{1\!\times\!1}+e_{3\!\times\!3}$.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \resizebox{\textwidth}{!}{\input{tikz/fire.tex}}
+    \captionsetup{width=0.94\linewidth}
+    \caption{A graphical representation of Squeeze and excitation; in this case a reduction ratio of $r=2$ 
+    is used with 8-channel feature maps.}
+\end{figure}
+
+
+\noindent
+By stacking multiple fire modules, SqueezeNet achieves a significant reduction in the number of parameters while maintaining competitive accuracy.

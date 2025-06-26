@@ -575,6 +575,43 @@
       \verb https://arxiv.org/abs/1709.01507
       \endverb
     \endentry
+    \entry{he2014convolutionalneuralnetworksconstrained}{misc}{}
+      \name{author}{2}{}{%
+        {{hash=6b4b60e909e78633945f3f9c9dc83e01}{%
+           family={He},
+           familyi={H\bibinitperiod},
+           given={Kaiming},
+           giveni={K\bibinitperiod}}}%
+        {{hash=f85751488058842b5777c7b4074077b5}{%
+           family={Sun},
+           familyi={S\bibinitperiod},
+           given={Jian},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{80ebc1d393aabe4965c193267189b464}
+      \strng{fullhash}{80ebc1d393aabe4965c193267189b464}
+      \strng{bibnamehash}{80ebc1d393aabe4965c193267189b464}
+      \strng{authorbibnamehash}{80ebc1d393aabe4965c193267189b464}
+      \strng{authornamehash}{80ebc1d393aabe4965c193267189b464}
+      \strng{authorfullhash}{80ebc1d393aabe4965c193267189b464}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{cs.CV}
+      \field{eprinttype}{arXiv}
+      \field{title}{Convolutional Neural Networks at Constrained Time Cost}
+      \field{year}{2014}
+      \verb{eprint}
+      \verb 1412.1710
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/1412.1710
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/1412.1710
+      \endverb
+    \endentry
   \enddatalist
 \endrefsection
 \endinput

@@ -5,9 +5,13 @@
 \usepackage[backend=biber,sorting=none]{biblatex}
 \addbibresource{bibl.bib}
 \usepackage[english]{babel}
+\usepackage{csquotes} % Added for biblatex
+\usepackage{lmodern}  % Added for better font support
 \usepackage{amsmath, amssymb}
 \usepackage{graphicx}
+\usepackage[T1]{fontenc}
 \usepackage{mathtools,pgfplots}
+\pgfplotsset{compat=1.18} % Set pgfplots compatibility
 \usepackage{hyperref}
 \usepackage{geometry}
 \usepackage{pdfpages}
@@ -21,6 +25,8 @@
 \usepackage{bm}
 \usepackage{fbox}
 \geometry{a4paper, total={5.7in,9.2in}}
+
+\newcommand{\quotes}[1]{``#1''}
 
 % Title and Author
 \title{SLAM performance predicition}
