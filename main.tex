@@ -2,17 +2,25 @@
 
 % Packages
 \usepackage[utf8]{inputenc}
-\usepackage[backend=biber]{biblatex}
+\usepackage[backend=biber,sorting=none]{biblatex}
 \addbibresource{bibl.bib}
 \usepackage[english]{babel}
 \usepackage{amsmath, amssymb}
 \usepackage{graphicx}
+\usepackage{mathtools,pgfplots}
 \usepackage{hyperref}
 \usepackage{geometry}
+\usepackage{pdfpages}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{stmaryrd}
 \usepackage{subcaption}
+\usepackage{tikz}
 \usepackage{amsmath}
+\usepackage{siunitx}
 \usepackage{bm}
-\geometry{a4paper, total={5.6in,9in}}
+\usepackage{fbox}
+\geometry{a4paper, total={5.7in,9.2in}}
 
 % Title and Author
 \title{SLAM performance predicition}
@@ -41,211 +49,11 @@ submitted by me or any other person for assessment on this or any other course o
 \tableofcontents 
 \newpage
 
-\section{Introduction}
-In the field of autonomous mobile robot, the Simultaneous Localization And Mapping (SLAM) represents
-one of the most significant problems. As the name suggests, the goal of the SLAM is incrementally obtain 
-from a mobile robot a map of the environment and simultaneously locate the robot's position inside it.
-The difficulty of the SLAM problem is that to precisely localize itself, the robot needs an accurate map,
-while to obtain an accurate map, it needs an accurate localization inside the map. This type of problems is 
-called chicken-and-egg problem.
+\input{sections/1_Introduction.tex}
 
-\subsection{SLAM methods}
-In the last 30 years several approaches have been developed to solve the SLAM problem leading to methods 
-extensively used in both common and industrial scenarios. The main paradigms \cite{Stachniss2016} used are:
-\begin{itemize}
-    \item Extended Kalman Filter: a vector containing the estimates of the robot position and the environment 
-    landmark is used. In addition, a matrix composed of the correlations between the positions and landmark
-    estimates is also used. Both the vector and the matrix are updated using the extended Kalman Filter.
-    \item Particle Filter: the Monte Carlo method is used to sample the possible states of the robot. A
-    random sample is called a particle and it's composed of the robot position and a map estimate. The main 
-    steps are: predict the robot’s pose for each particle, update particle weights based on sensor data,
-    resample particles according to their weights, and update each particle’s map.
-    \item Graph-based: a graph is used where nodes represent robot poses or landmarks, and edges represent
-    spatial constraints derived from sensor observations or odometry. The SLAM problem is formulated as a 
-    graph optimization task, where the goal is to find the configuration of nodes that best satisfies all 
-    constraints, typically using nonlinear optimization techniques.
-\end{itemize}
+\input{sections/2_Data.tex}
 
-\subsection{Accuracy of SLAM methods}
-The heterogeneity of SLAM methods makes it difficult to find a measure that can evaluate their godness.
-Many approaches rely on manual evaluation or utilize information derived from the specific algorithm.
-Nowadays the most used metric is the Absolute Pose Error (APE)\cite{APE}. The APE measures the difference between 
-the estimated trajectory produced by the SLAM algorithm and the ground truth trajectory, focusing on the global 
-consistency of the estimated poses. The big advantage of the APE is that it allows for a quantitative assessment 
-of how well the SLAM algorithm reconstructs the robot's trajectory over time, independent of the internal workings 
-of the specific method used.
-
-The APE is composed of two sub-metrics:
-\begin{enumerate}
-    \item The Absolute Translational Error (ATE): it measures the difference in position, typically using the 
-    Euclidean distance between corresponding poses.
-    \item The Absolute Rotational Error (ARE): it measures the difference in orientation, often computed as the 
-    angular distance between corresponding rotations.
-\end{enumerate}
-Figure \ref{fig:APE} and \ref{fig:trajectories} show respectively the ATE variation over time and the difference
-between the ground truth and the robot estimated trajectory during an environment exploration.
-
-\begin{figure}[htbp]
-    \centering
-    \begin{minipage}{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/APE.pdf}
-        \caption{ATE variation over time}
-        \label{fig:APE}
-    \end{minipage}\hfill
-    \begin{minipage}{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/trajectories.pdf}
-        \caption{Difference between real (in green) and estimated (in blue) trajectory}
-        \label{fig:trajectories}
-    \end{minipage}
-\end{figure}
-
-\subsection{APE calculation}
-As anticipated in the previous section, the APE metric is based on the difference between the estimated robot 
-poses and the corresponding ground truth poses. 
-
-Formally, let $\bm{x}_{1:T}$ be the poses of the robot estimated by
-a SLAM algorithm from time step 1 to $T$, and let $\bm{x}^*_{1:T}$ be the corresponding ground truth poses.
-
-Let $\delta_{i,j}$ be the relative transformation that moves the robot from pose $x_i$ to $x_j$:
-$$ \delta_{i,j}=x_j\ominus x_i $$
-$$ \delta^*_{i,j}=x^*_j\ominus x^*_i $$ 
-
-Let $trans(\cdot)\in\mathbb{R}^2$ be the function that extracts the translational (position) component from a 
-transformation, and let $rot(\cdot)\in\mathbb{R}^2$ extract the rotational (orientation) component as Euler angle.
-
-Finally, to compute the APE: 
-$$
-\begin{aligned}
-    \displaystyle
-    \text{APE} &= \underbrace{\frac{1}{N}\sum_{i,j}trans(\delta_{i,j}\ominus\delta^*_{i,j})^2}_{\text{ATE}}+
-                  \underbrace{\frac{1}{N}\sum_{i,j}rot(\delta_{i,j}\ominus\delta^*_{i,j})^2}_{\text{ARE}} \\
-\end{aligned}
-$$
-
-\subsection{Project goal}
-Typically, the APE is calculated a posteriori, after the robot has explored the entire environment. The main
-goal of this project is to propose a predictor for the SLAM performance, specifically the APE, before running 
-the algorithm or during its execution, using features derived from the input data or intermediate results.
-This type of prediction can improve the robustness and efficiency of autonomous mobile systems since the 
-position error (APE) can be used to correct the robot trajectory.
-
-The work in \cite{Luperto} proposes two main APE predictors, one based on linear regression, and another one
-based on a Gaussian Process via an RBF Kernel. Although Gaussian Process regression showed slightly better
-performance compared to linear regression model, the authors preferred linear regression because they
-considered it a more interpretable model. In both cases, a feature extractor is used \cite{Luperto2} obtaining
-a set of structural features to represent the environment as a vector, which is then passed to the model.
-
-\section{Data}
-\subsection{Dataset composition}
-The dataset is composed of 4613 datapoints. Each datapoint is represented as a tuple $(M, a, ate, are)$, where:
-\begin{enumerate}
-    \item $M\in[0,255]^{n\times n}$: floorplan images representend as grayscale maps that a robot has obtained 
-        during its navigation. Some examples are reported in Figure \ref{fig:floorplans};
-    \item $a\in\mathbb{R}^+$: area measurements of the floorplan images, expressed in $m^2$;
-    \item $ate\in\mathbb{R}^+$: ATE values, expressed in $m$;
-    \item $are\in\mathbb{R}^+$: ARE values, expressed in $rad$;
-\end{enumerate}
-\begin{figure}[h]
-        \centering
-        \begin{minipage}{0.32\textwidth}
-            \centering
-            \includegraphics[width=\linewidth]{figures/floorplan1.png}
-        \end{minipage}
-        \hfill
-        \begin{minipage}{0.32\textwidth}
-            \centering
-            \includegraphics[width=\linewidth]{figures/floorplan2.png}
-        \end{minipage}
-        \hfill
-        \begin{minipage}{0.32\textwidth}
-            \centering
-            \includegraphics[width=\linewidth]{figures/floorplan3.png}
-        \end{minipage}
-        \caption{Examples of grayscale floorplan images used as input; the white pixels represent the
-        free area, the black pixels the obstacles and the gray pixels the unknown area.\label{fig:floorplans}}
-    \end{figure}
-
-\subsection{Data preprocessing}
-
-Evaluating the APE values shows that they are mainly distributed towards zero, with a significant presence of 
-outliers, especially for ATE values. Figure \ref{fig:dataBoxPlot} shows the box plot with highlighted the 
-0.99-quantile and the first value such that its Z-score is greater or equal to 3.5; the Z-score of a number 
-$x$ is $Z = \frac{x-\overline{x}}{\sigma}$ where $\overline{x}$ is the mean and $\sigma$ the standard deviation.
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=\linewidth]{figures/APE_box.pdf}
-    \vspace{-2em}
-    \captionsetup{width=0.95\linewidth}
-    \caption{Box plot of the ATE (top) and ARE (bottom) values; is also shown the 0.99-quantile (red line) and 
-    the first value with a z-score equal to 3.5 (blue line).\label{fig:dataBoxPlot}}
-\end{figure}
-
-\noindent
-To facilitate our models to learn each quantity, the following strategies have been applied:
-\begin{itemize}
-    \item Outliers cleaning: data points with ATE or ARE values above the $0.99$-quantile or with a Z-score 
-    greater than or equal to 3.5 have been removed to reduce the impact of extreme outliers. 113 datapoints
-    were removed;
-    \item Logarithmic rescaling: due to the skewed distribution of ATE and ARE, a logarithmic transformation
-        has been applied to these values to reduce the effect of large values and improve model learning; let
-        $x$ be the interested value to be rescaled, the applied operation is: 
-        $$ \log(1+x) $$ where $\log$ is the
-        natural logarithm;
-
-    \item Rescaling: after the logarithmic rescaling, a linear rescaling to $[0,1]$ has been applied; let
-        $\{x_1,\dots,x_n\}$ be interested values to be rescaled, the applied operation is 
-        \begin{equation} \frac{x_i}{\underset{1\leq k \leq n}{\max}x_k} \tag*{i=1,\dots,n} \end{equation}
-        \begin{figure}[h]
-            \raggedleft
-            \begin{minipage}{0.92\textwidth}
-                \includegraphics[width=\linewidth]{figures/APE_norm_hist.pdf}
-            \end{minipage}
-            \vspace{-1em}
-            \caption{Dataset values after the log and linear rescaling.}
-        \end{figure}
-
-    \item Image cropping: each map has been cropped to remove unnecessary borders, focusing only on the relevant 
-        area to reduce input size and eliminate irrelevant background; the crop is always squared in order to
-        mantain this property to all floorplan images. Figure \ref{fig:squaredBox} show an example of this 
-        operation;
-        \begin{figure}[h]
-            \centering
-            \begin{minipage}{0.92\textwidth}
-                \hspace{4em}
-                \begin{minipage}{0.35\textwidth}
-                    \includegraphics[width=\linewidth]{figures/notSquaredMap.png}
-                \end{minipage}
-                \hspace{2em}
-                \begin{minipage}{0.35\textwidth}
-                    \includegraphics[width=\linewidth]{figures/squaredMap.png}
-                \end{minipage}
-                \hfill
-            \end{minipage}
-            \caption{A floorplan (left) and its bounding square crop (right).\label{fig:squaredBox}}
-        \end{figure}
-    \item Image resizing: each floorplan image is resized to $400 \times 400$ pixels to 
-        ensure a uniform input size for the neural network models;
-\end{itemize}
-
-\subsection{Data augmentation}
-Given the relatively limited size of the dataset, the following data augmentation techniques have been applied to
-training set:
-\begin{itemize}
-    \item Random flip: both horizontal and vertical flips  applied;
-    \item Random rotation: a random rotation between $0^\circ,90^\circ,180^\circ,270^\circ$ is applied; 
-\end{itemize}
-
-\section{Model}
-In this project, different architectures are used, all based on Convolutional Neural Network (CNN) in order 
-to delegate the feature extraction to the model and directly using the environment floorplan image.
-Formally, the model $h$ we want to learn can be expressed as follows:
-$$ h: [0,255]^{n\times n} \times \mathbb{R}^+ \rightarrow \mathbb{R}^2 $$
-Where $[0,255]^{n\times n}$ is a floorplan image, encoded as a $n\times n$ grayscale image, $\mathbb{R}^+$ is the
-area of the floorplan expressed in $m^2$ and $\mathbb{R}^2$ contains ATE ($m$)
-and ARE ($rad$).
-\section{AlexNet}
+\input{sections/3_Model.tex}
 
 
 \clearpage

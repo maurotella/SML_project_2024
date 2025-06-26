@@ -8,5 +8,10 @@
 \contentsline {subsection}{\numberline {2.1}Dataset composition}{4}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Data preprocessing}{4}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}Data augmentation}{6}{subsection.2.3}%
-\contentsline {section}{\numberline {3}Model}{6}{section.3}%
-\contentsline {section}{\numberline {4}AlexNet}{6}{section.4}%
+\contentsline {section}{\numberline {3}Models}{6}{section.3}%
+\contentsline {subsection}{\numberline {3.1}AlexNet}{6}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Dropout}{7}{subsubsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.2}MobileNetV3}{7}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Depthwise and Pointwise Convolutions}{7}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Squeeze and Excitation}{8}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}HardSwish Activation function}{9}{subsubsection.3.2.3}%
