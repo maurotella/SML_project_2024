@@ -617,6 +617,9 @@ INPUT C:\Users\mauro\AppData\Local\MiKTeX\fonts\tfm\public\stmaryrd\stmary9.tfm
 INPUT C:\Users\mauro\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmbx9.tfm
 INPUT C:\Users\mauro\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\lmmib10.tfm
 INPUT C:\Users\mauro\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\lmbsy10.tfm
+INPUT .\sections\4_Hyperparameter_selection.tex
+INPUT .\sections\4_Hyperparameter_selection.tex
+INPUT sections\4_Hyperparameter_selection.tex
 INPUT C:\Users\mauro\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmcsc10.tfm
 INPUT C:\Users\mauro\AppData\Local\Programs\MiKTeX\tex\latex\lm\t1lmtt.fd
 INPUT C:\Users\mauro\AppData\Local\Programs\MiKTeX\tex\latex\lm\t1lmtt.fd

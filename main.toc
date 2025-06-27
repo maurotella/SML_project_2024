@@ -17,3 +17,4 @@
 \contentsline {subsubsection}{\numberline {3.2.3}HardSwish Activation function}{9}{subsubsection.3.2.3}%
 \contentsline {subsection}{\numberline {3.3}SqueezeNet}{10}{subsection.3.3}%
 \contentsline {subsubsection}{\numberline {3.3.1}Fire modules}{10}{subsubsection.3.3.1}%
+\contentsline {section}{\numberline {4}Hyperparameter selection}{11}{section.4}%

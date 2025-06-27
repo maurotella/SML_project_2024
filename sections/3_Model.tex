@@ -177,14 +177,21 @@ The few parameters of SqueezeNet also led to a large reduction in power consumpt
 making it one of the most widely used architectures in various fields such as autonomous driving, IoT, 
 and mobile AI.
 
+Another aspect of SqueezeNet is the absence of a Fully Connected (FC) layer; this is simply because 
+these kind of layers use a large number of parameters. In our model, shown in Figure \ref{fig:squeezeDiag}, 
+a small FC layer was added so that the area value was also utilized. This addition resulted in a very 
+slight increase in the model parameters, precisely 362.
+
 \begin{figure}[H]
+    \vspace{0.8em}
     \centering
     \resizebox{.4\textwidth}{!}{\input{tikz/squeezeNet.tex}}
-    \captionsetup{width=0.94\linewidth}
-    \caption{.\label{fig:squeezeDiag}}
+    \caption{Model structure based on SqueezeNet v1.1 \label{fig:squeezeDiag}}
 \end{figure}
 
-Consider a convolutional layer formed only with $3\!\times\!3$ filters. Its numbers of parameters is:
+\noindent
+To understand how SqueezeNet was able to reduce the number of parameters consider a convolutional layer
+formed only with $3\!\times\!3$ filters. Its numbers of parameters is:
 $$ (\text{\# filters})\cdot(\text{\# input channels})\cdot(3\cdot 3) $$
 So, to maintain a small number of parameters in a CNN it is important to reduce both the number of filters
 and the number of input channels.
@@ -192,26 +199,29 @@ The authors of \cite{iandola2016squeezenetalexnetlevelaccuracy50x}, following th
 three strategies:
 
 \begin{enumerate}
-    \item Replace most of $3\!\times\!3$ filters with $1\!\times\!1$ filter: in this way they reduce the numbers of 
-    $3\!\times\!3$ filters by replacing them with $1\!\times\!1$ filters that have 9 times fewer parameters;
+    \item Replace most of $3\!\times\!3$ filters with $1\!\times\!1$ filter: in this way they reduce the numbers 
+    of $3\!\times\!3$ filters by replacing them with $1\!\times\!1$ filters that have 9 times fewer parameters;
     \item Decrease the number of input channels of $\!3\times\!3$ filters: to do so squeeze layers was used 
     (similar but different from the squeeze phase described in secction \ref{sec:SqueezeExcitation});
     \item Downsaple late in the network: in this way convolutional layers have large activation map
         leading to higher accuracy \cite{he2014convolutionalneuralnetworksconstrained}; 
 \end{enumerate}
 \noindent
-To employ this three strategies Fire modules are introduced.
+
+To implement strategy 3, max-pooling with a stride of 2 is performed after four layers while for the first two
+strategies, Fire modules are introduced.
 
 \subsubsection{Fire modules}
 A Fire module consists of:
 \begin{itemize}
     \item A squeeze convolution layer: it uses $s_{1\!\times\!1}$ filters $1\!\times\!1$ to squeeze all
-        the input channels into $s_{1\!\times\!1}$ single channel feature maps (Figure \ref{fig:squeeze});
+        the input channels into $s_{1\!\times\!1}$ single channel feature maps (strategy 1); shown in Figure 
+        \ref{fig:squeeze};
     \item An expand layer: formed by $e_{1\!\times\!1}$ filters $1\!\times\!1$ and $e_{3\!\times\!3}$ 
         filters $3\!\times\!3$; it takes as input the $s_{1\!\times\!1}$ feature maps and returns the
         $e_{1\!\times\!1}+e_{3\!\times\!3}$ feature maps obtained from the convolutional filters of this 
         layer. To limit the number of input channels of the $3\!\times\!3$ filters, Fire modules set 
-        $s_{1\!\times\!1}$ to be less than $e_{1\!\times\!1}+e_{3\!\times\!3}$.
+        $s_{1\!\times\!1}$ to be less than $e_{1\!\times\!1}+e_{3\!\times\!3}$ (strategy 2).
 \end{itemize}
 
 \begin{figure}[H]

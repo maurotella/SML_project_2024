@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber main"] 1751021503.5417 "main.bcf" "main.bbl" "main" 1751021822.27986 0
+["biber main"] 1751021503.5417 "main.bcf" "main.bbl" "main" 1751030354.3736 0
   "bibl.bib" 1750955076 6079 bb055249ec01ab6b73b53d3700dbfaef ""
-  "main.bcf" 1751021821 108912 a4e7cd01487f9e6df1c274d78c98ab9f "pdflatex"
+  "main.bcf" 1751030354 108912 a4e7cd01487f9e6df1c274d78c98ab9f "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1751021819.70006 "d:/OneDrive - Università degli Studi di Milano/Università/Magistrale/Statistical methods for machine learning/Progetto/Git/main.tex" "main.pdf" "main" 1751021822.2806 0
+["pdflatex"] 1751030351.8729 "d:/OneDrive - Università degli Studi di Milano/Università/Magistrale/Statistical methods for machine learning/Progetto/Git/main.tex" "main.pdf" "main" 1751030354.37432 0
   "C:/Users/mauro/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1751020634 279790 5e1a8079436103bd8d180788c7dc8eb0 ""
   "C:/Users/mauro/AppData/Local/MiKTeX/fonts/tfm/public/stmaryrd/stmary10.tfm" 1750895977 848 f478e0761563bbc369eca609a1741348 ""
   "C:/Users/mauro/AppData/Local/MiKTeX/fonts/tfm/public/stmaryrd/stmary5.tfm" 1750895980 848 e1bc58a31b9ed9c3729ffea165acfaac ""
@@ -315,7 +315,7 @@
   "C:/Users/mauro/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/mauro/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
   "C:/Users/mauro/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/xkeyval.sty" 1656236919 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
-  "d:/OneDrive - Università degli Studi di Milano/Università/Magistrale/Statistical methods for machine learning/Progetto/Git/main.tex" 1751020708 1909 d1e4c067bcfc132c898debd9e97617c7 ""
+  "d:/OneDrive - Università degli Studi di Milano/Università/Magistrale/Statistical methods for machine learning/Progetto/Git/main.tex" 1751030329 1960 defae3ebad45642400fe65330d777409 ""
   "figures/APE.pdf" 1747828604 28620 1285feb0e5360d7d80282ab79cff144b ""
   "figures/APE_box.pdf" 1750700842 79006 557bf0b2e9f87d6ebe8d279f8338ef46 ""
   "figures/APE_norm_hist.pdf" 1750709621 112833 31a7eb31401a20d8943bb66a9a57c114 ""
@@ -329,18 +329,19 @@
   "figures/notSquaredMap.png" 1750634083 16710 245ec4a33104b0b8939d1aa894ce589a ""
   "figures/squaredMap.png" 1750635279 10366 b63eec3a7f133bc3103ebd91a008856d ""
   "figures/trajectories.pdf" 1747823090 52298 8790ad758f9dd79f621a4f8a2599d6d9 ""
-  "main.aux" 1751021821 8668 daf8771f2aec7b604cc950459b2cecc7 "pdflatex"
+  "main.aux" 1751030354 8870 560163b8f3771a7a050c00d20965a1a3 "pdflatex"
   "main.bbl" 1751021505 26841 d743410888d6295cf2e930298ea789d5 "biber main"
-  "main.out" 1751021821 2459 d393deeeb346542a89dc7d855be59348 "pdflatex"
-  "main.run.xml" 1751021821 2299 8578a4f8b22416835e1a38ffb3b58c2c "pdflatex"
-  "main.tex" 1751020708 1909 d1e4c067bcfc132c898debd9e97617c7 ""
-  "main.toc" 1751021821 1513 d4806a369b2e802abb5902d9be4ad192 "pdflatex"
+  "main.out" 1751030354 2626 a1ee8aaefe3dfcda9ffdea978dd087b0 "pdflatex"
+  "main.run.xml" 1751030354 2299 8578a4f8b22416835e1a38ffb3b58c2c "pdflatex"
+  "main.tex" 1751030329 1960 defae3ebad45642400fe65330d777409 ""
+  "main.toc" 1751030354 1594 806f17eb40ea44ad04241cd398759cbf "pdflatex"
   "sections/1_Introduction.tex" 1750754001 6063 b592d31df730f98a238c47b4793ab040 ""
   "sections/2_Data.tex" 1750929813 5199 4bdcba231e0d731b555aa9ca92e1ea19 ""
-  "sections/3_Model.tex" 1751021816 12707 9d7a1a8303bc86f99a680a278398be9e ""
+  "sections/3_Model.tex" 1751029739 13324 bc76b7a7d2a3560886c78bcf120b807f ""
+  "sections/4_Hyperparameter_selection.tex" 1751030348 34 2f7b821b8bcf73318782c6ec125cb271 ""
   "tikz/excitation.tex" 1750899755 4610 f383c720b1159e120981f620029434da ""
   "tikz/fire.tex" 1751017813 11919 68773d93c068e7b3716d90b18c5e6cce ""
-  "tikz/squeezeNet.tex" 1751021770 897 b92f212c228336bbfc7563ed4a581d9b ""
+  "tikz/squeezeNet.tex" 1751027540 899 2cea2d3865fe9f03108b798646bcec94 ""
   (generated)
   "main.aux"
   "main.bcf"
