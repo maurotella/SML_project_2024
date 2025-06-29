@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber main"] 1751021503.5417 "main.bcf" "main.bbl" "main" 1751030354.3736 0
-  "bibl.bib" 1750955076 6079 bb055249ec01ab6b73b53d3700dbfaef ""
-  "main.bcf" 1751030354 108912 a4e7cd01487f9e6df1c274d78c98ab9f "pdflatex"
+["biber main"] 1751071915.99355 "main.bcf" "main.bbl" "main" 1751123407.90278 0
+  "bibl.bib" 1751071357 8004 e907074d2fc4c9698a6d4e663f4024c3 ""
+  "main.bcf" 1751123407 108979 ad804cc4aec5062b3ce4dbb2f16a3ac3 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1751030351.8729 "d:/OneDrive - Università degli Studi di Milano/Università/Magistrale/Statistical methods for machine learning/Progetto/Git/main.tex" "main.pdf" "main" 1751030354.37432 0
+["pdflatex"] 1751123405.35247 "d:/OneDrive - Università degli Studi di Milano/Università/Magistrale/Statistical methods for machine learning/Progetto/Git/main.tex" "main.pdf" "main" 1751123407.90353 0
   "C:/Users/mauro/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1751020634 279790 5e1a8079436103bd8d180788c7dc8eb0 ""
   "C:/Users/mauro/AppData/Local/MiKTeX/fonts/tfm/public/stmaryrd/stmary10.tfm" 1750895977 848 f478e0761563bbc369eca609a1741348 ""
   "C:/Users/mauro/AppData/Local/MiKTeX/fonts/tfm/public/stmaryrd/stmary5.tfm" 1750895980 848 e1bc58a31b9ed9c3729ffea165acfaac ""
@@ -86,6 +86,7 @@
   "C:/Users/mauro/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb" 1256929440 30388 702fae6a5f0e6e9c48a1d872b442ffcf ""
   "C:/Users/mauro/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi7.pfb" 1256929440 30789 39c6b966e509dbc60e7a1aaaf85d08a0 ""
   "C:/Users/mauro/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmib10.pfb" 1256929440 30962 0fa65166a316c2ff6663754edfd267df ""
+  "C:/Users/mauro/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmib7.pfb" 1256929440 31565 a00d0804f3059ad101f11efc3794bd2b ""
   "C:/Users/mauro/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb" 1256929440 119235 05e5c8d6d60439433e50047898c2c0e0 ""
   "C:/Users/mauro/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb" 1256929440 113634 9384aebdf26f9881e046a4b5574566db ""
   "C:/Users/mauro/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb" 1256929440 119752 1bd8d06e4079df624bf59ce3ad7c9aa6 ""
@@ -329,16 +330,16 @@
   "figures/notSquaredMap.png" 1750634083 16710 245ec4a33104b0b8939d1aa894ce589a ""
   "figures/squaredMap.png" 1750635279 10366 b63eec3a7f133bc3103ebd91a008856d ""
   "figures/trajectories.pdf" 1747823090 52298 8790ad758f9dd79f621a4f8a2599d6d9 ""
-  "main.aux" 1751030354 8870 560163b8f3771a7a050c00d20965a1a3 "pdflatex"
-  "main.bbl" 1751021505 26841 d743410888d6295cf2e930298ea789d5 "biber main"
-  "main.out" 1751030354 2626 a1ee8aaefe3dfcda9ffdea978dd087b0 "pdflatex"
-  "main.run.xml" 1751030354 2299 8578a4f8b22416835e1a38ffb3b58c2c "pdflatex"
+  "main.aux" 1751123407 9265 71f54ee968f5bdd1502366de4e8f3778 "pdflatex"
+  "main.bbl" 1751071921 30128 d234006e89b52b9baec371ce854e3483 "biber main"
+  "main.out" 1751123407 2898 716f93d29d46803ce6e1b2c5fe7f2897 "pdflatex"
+  "main.run.xml" 1751123407 2299 8578a4f8b22416835e1a38ffb3b58c2c "pdflatex"
   "main.tex" 1751030329 1960 defae3ebad45642400fe65330d777409 ""
-  "main.toc" 1751030354 1594 806f17eb40ea44ad04241cd398759cbf "pdflatex"
+  "main.toc" 1751123407 1766 e88d30dd9e58382e17073e9d4a3c3942 "pdflatex"
   "sections/1_Introduction.tex" 1750754001 6063 b592d31df730f98a238c47b4793ab040 ""
-  "sections/2_Data.tex" 1750929813 5199 4bdcba231e0d731b555aa9ca92e1ea19 ""
+  "sections/2_Data.tex" 1751111706 5200 8de8866ebb40976e49b7957c0fd3e73d ""
   "sections/3_Model.tex" 1751029739 13324 bc76b7a7d2a3560886c78bcf120b807f ""
-  "sections/4_Hyperparameter_selection.tex" 1751030348 34 2f7b821b8bcf73318782c6ec125cb271 ""
+  "sections/4_Hyperparameter_selection.tex" 1751123404 2729 513c5e796ab0f1da95838d95c8974e34 ""
   "tikz/excitation.tex" 1750899755 4610 f383c720b1159e120981f620029434da ""
   "tikz/fire.tex" 1751017813 11919 68773d93c068e7b3716d90b18c5e6cce ""
   "tikz/squeezeNet.tex" 1751027540 899 2cea2d3865fe9f03108b798646bcec94 ""

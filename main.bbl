@@ -635,6 +635,50 @@
       \verb https://arxiv.org/abs/1412.1710
       \endverb
     \endentry
+    \entry{YANG2020295}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=7f8a6256a19361714c6f6a011671f17d}{%
+           family={Yang},
+           familyi={Y\bibinitperiod},
+           given={Li},
+           giveni={L\bibinitperiod}}}%
+        {{hash=e0bc9fb2a53a5ae2c43f946abc2d7026}{%
+           family={Shami},
+           familyi={S\bibinitperiod},
+           given={Abdallah},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{fe94961415bbb2dc0eb174c499655848}
+      \strng{fullhash}{fe94961415bbb2dc0eb174c499655848}
+      \strng{fullhashraw}{fe94961415bbb2dc0eb174c499655848}
+      \strng{bibnamehash}{fe94961415bbb2dc0eb174c499655848}
+      \strng{authorbibnamehash}{fe94961415bbb2dc0eb174c499655848}
+      \strng{authornamehash}{fe94961415bbb2dc0eb174c499655848}
+      \strng{authorfullhash}{fe94961415bbb2dc0eb174c499655848}
+      \strng{authorfullhashraw}{fe94961415bbb2dc0eb174c499655848}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Machine learning algorithms have been used widely in various applications and areas. To fit a machine learning model into different problems, its hyper-parameters must be tuned. Selecting the best hyper-parameter configuration for machine learning models has a direct impact on the model’s performance. It often requires deep knowledge of machine learning algorithms and appropriate hyper-parameter optimization techniques. Although several automatic optimization techniques exist, they have different strengths and drawbacks when applied to different types of problems. In this paper, optimizing the hyper-parameters of common machine learning models is studied. We introduce several state-of-the-art optimization techniques and discuss how to apply them to machine learning algorithms. Many available libraries and frameworks developed for hyper-parameter optimization problems are provided, and some open challenges of hyper-parameter optimization research are also discussed in this paper. Moreover, experiments are conducted on benchmark datasets to compare the performance of different optimization methods and provide practical examples of hyper-parameter optimization. This survey paper will help industrial users, data analysts, and researchers to better develop machine learning models by identifying the proper hyper-parameter configurations effectively.}
+      \field{issn}{0925-2312}
+      \field{journaltitle}{Neurocomputing}
+      \field{title}{On hyperparameter optimization of machine learning algorithms: Theory and practice}
+      \field{volume}{415}
+      \field{year}{2020}
+      \field{pages}{295\bibrangedash 316}
+      \range{pages}{22}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.neucom.2020.07.061
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0925231220311693
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0925231220311693
+      \endverb
+      \keyw{Hyper-parameter optimization,Machine learning,Bayesian optimization,Particle swarm optimization,Genetic algorithm,Grid search}
+    \endentry
   \enddatalist
 \endrefsection
 \endinput
