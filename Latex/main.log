@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.6.27)  1 JUL 2025 00:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.6.27)  1 JUL 2025 01:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"d:/OneDrive - Università degli Studi di Milano/Università/Magistrale/Statistical methods for machine learning/Progetto/Git/main.tex"
-(d:/OneDrive - Università degli Studi di Milano/Università/Magistrale/Statistical methods for machine learning/Progetto/Git/main.tex
+**"d:/OneDrive - Università degli Studi di Milano/Università/Magistrale/Statistical methods for machine learning/Progetto/Git/Latex/main.tex"
+(d:/OneDrive - Università degli Studi di Milano/Università/Magistrale/Statistical methods for machine learning/Progetto/Git/Latex/main.tex
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-05-26>
 (C:\Users\mauro\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -1258,7 +1258,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 [12] (tikz/gridSearch.tex) (tikz/randomSearch.tex)
 
 [13]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 86.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 87.
  (C:\Users\mauro\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -1267,9 +1267,7 @@ File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 
 [15]
 
-[16]
-
-[17
+[16
 
 ] (main.aux)
  ***********
@@ -1287,17 +1285,17 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 48019 strings out of 468219
- 1111043 string characters out of 5432869
+ 48018 strings out of 468219
+ 1111180 string characters out of 5432869
  1976772 words of memory out of 5000000
  75690 multiletter control sequences out of 15000+600000
  722450 words of font info for 119 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,14n,105p,1603b,1828s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,14n,105p,1609b,1828s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/mauro/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/mauro/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/mauro/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/mauro/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/mauro/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/mauro/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/mauro/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmcsc10.pfb><C:/Users/mauro/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Users/mauro/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Users/mauro/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi7.pfb><C:/Users/mauro/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmib10.pfb><C:/Users/mauro/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmib7.pfb><C:/Users/mauro/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/mauro/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/mauro/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/mauro/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/mauro/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/mauro/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C:/Users/mauro/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/mauro/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/mauro/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Users/mauro/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy9.pfb><C:/Users/mauro/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/mauro/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/mauro/AppData/Local/Programs/MiKTeX/fonts/type1/public/hoekwater/stmary10.pfb>
-Output written on main.pdf (17 pages, 962614 bytes).
+Output written on main.pdf (16 pages, 962247 bytes).
 PDF statistics:
- 634 PDF objects out of 1000 (max. 8388607)
- 118 named destinations out of 1000 (max. 500000)
+ 630 PDF objects out of 1000 (max. 8388607)
+ 117 named destinations out of 1000 (max. 500000)
  322 words of extra memory for PDF output out of 10000 (max. 10000000)
 

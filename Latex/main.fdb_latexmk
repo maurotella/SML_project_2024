@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber main"] 1751306019.03096 "main.bcf" "main.bbl" "main" 1751324059.21908 0
+["biber main"] 1751306019.03096 "main.bcf" "main.bbl" "main" 1751326195.94058 0
   "bibl.bib" 1751305989 9062 837cdb4f8b2a4c2f5051b6ba14008e26 ""
-  "main.bcf" 1751324058 109244 fea429285c908bc1792f8fd72839ebb2 "pdflatex"
+  "main.bcf" 1751326195 109244 fea429285c908bc1792f8fd72839ebb2 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1751324056.35897 "d:/OneDrive - Università degli Studi di Milano/Università/Magistrale/Statistical methods for machine learning/Progetto/Git/main.tex" "main.pdf" "main" 1751324059.21984 0
+["pdflatex"] 1751326192.93689 "d:/OneDrive - Università degli Studi di Milano/Università/Magistrale/Statistical methods for machine learning/Progetto/Git/Latex/main.tex" "main.pdf" "main" 1751326195.94137 0
   "C:/Users/mauro/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1751020634 279790 5e1a8079436103bd8d180788c7dc8eb0 ""
   "C:/Users/mauro/AppData/Local/MiKTeX/fonts/tfm/public/stmaryrd/stmary10.tfm" 1750895977 848 f478e0761563bbc369eca609a1741348 ""
   "C:/Users/mauro/AppData/Local/MiKTeX/fonts/tfm/public/stmaryrd/stmary5.tfm" 1750895980 848 e1bc58a31b9ed9c3729ffea165acfaac ""
@@ -318,7 +318,7 @@
   "C:/Users/mauro/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/mauro/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
   "C:/Users/mauro/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/xkeyval.sty" 1656236919 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
-  "d:/OneDrive - Università degli Studi di Milano/Università/Magistrale/Statistical methods for machine learning/Progetto/Git/main.tex" 1751314881 2030 5d64f02a6a3eb1ddafc0482229ff4c13 ""
+  "d:/OneDrive - Università degli Studi di Milano/Università/Magistrale/Statistical methods for machine learning/Progetto/Git/Latex/main.tex" 1751324862 2030 5d64f02a6a3eb1ddafc0482229ff4c13 ""
   "figures/APE.pdf" 1747828604 28620 1285feb0e5360d7d80282ab79cff144b ""
   "figures/APE_box.pdf" 1750700842 79006 557bf0b2e9f87d6ebe8d279f8338ef46 ""
   "figures/APE_norm_hist.pdf" 1750709621 112833 31a7eb31401a20d8943bb66a9a57c114 ""
@@ -332,17 +332,17 @@
   "figures/notSquaredMap.png" 1750634083 16710 245ec4a33104b0b8939d1aa894ce589a ""
   "figures/squaredMap.png" 1750635279 10366 b63eec3a7f133bc3103ebd91a008856d ""
   "figures/trajectories.pdf" 1747823090 52298 8790ad758f9dd79f621a4f8a2599d6d9 ""
-  "main.aux" 1751324058 11609 1d9d0e0eb85159e43e310f9e03853554 "pdflatex"
+  "main.aux" 1751326195 11609 d9197ed6b0e7fb841031848ff7b29bfe "pdflatex"
   "main.bbl" 1751306020 36322 34e4335c18fef76e03e75e5263d3f1c5 "biber main"
-  "main.out" 1751324058 3922 49b9f876e9d6ebe0b735ebdf56e8b477 "pdflatex"
-  "main.run.xml" 1751324058 2299 8578a4f8b22416835e1a38ffb3b58c2c "pdflatex"
-  "main.tex" 1751314881 2030 5d64f02a6a3eb1ddafc0482229ff4c13 ""
-  "main.toc" 1751324058 2413 477f302f12760e4673131dcf52613756 "pdflatex"
+  "main.out" 1751326195 3922 49b9f876e9d6ebe0b735ebdf56e8b477 "pdflatex"
+  "main.run.xml" 1751326195 2299 8578a4f8b22416835e1a38ffb3b58c2c "pdflatex"
+  "main.tex" 1751324862 2030 5d64f02a6a3eb1ddafc0482229ff4c13 ""
+  "main.toc" 1751326195 2413 9b7337ccfbfcb14f352830a8ed6992a8 "pdflatex"
   "sections/1_Introduction.tex" 1750754001 6063 b592d31df730f98a238c47b4793ab040 ""
   "sections/2_Data.tex" 1751111706 5200 8de8866ebb40976e49b7957c0fd3e73d ""
   "sections/3_Model.tex" 1751303218 13324 851b283ac56ae10d6c403fd396a26a87 ""
-  "sections/4_Hyperparameter_selection.tex" 1751324055 8480 148ab133a0880b1575e60305af7b8e36 ""
-  "sections/5_Training.tex" 1751323629 1978 4b02871d9f3c8c3cfcf721b5c704b3d5 ""
+  "sections/4_Hyperparameter_selection.tex" 1751324949 8501 a9cfdb1179aede38a077b7eb23bd51bc ""
+  "sections/5_Training.tex" 1751326192 2044 5777c3c3f4a9989e0a5411369e2ea635 ""
   "sections/6_Conclusion.tex" 1751314766 20 b50204e17c0a475d3d65191e029fdf1d ""
   "tikz/excitation.tex" 1750899755 4610 f383c720b1159e120981f620029434da ""
   "tikz/fire.tex" 1751201965 11919 68773d93c068e7b3716d90b18c5e6cce ""
