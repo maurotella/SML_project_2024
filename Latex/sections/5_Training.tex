@@ -15,13 +15,33 @@ This combination of techniques allows ADAM to be more efficient and robust on no
 
 \subsection{Training results}
 
+The results are shown in Table~\ref{tab:training}. A Pareto dominance of MobileNetV3 is evident, as it achieves, by far, the lowest loss values across all metrics compared to the other models. This indicates that MobileNetV3 outperforms, in terms of accuracy, both AlexNet and SqueezeNet. This superiority was to be expected since AlexNet is an obsolete model compared to MobileNetV3 and SqueezeNet focuses more on model reduction than accuracy. 
+
 \begin{table}[H]
     \centering
     \begin{tabular}{|r|c|c|c|c|} \hline
         & \textbf{Train loss}   & \textbf{Valid. Loss}   & \textbf{Test Loss} & \textbf{$5-$CV Loss} \\\hline
         \textbf{AlexNet}     & 0.03394 & 0.03214 & 0.03476 & 0.03489 \\\hline
-        \textbf{MobileNetV3} & 0.00607 & 0.00762 & 0.00785 & 0.01307  \\\hline
+        \textbf{MobileNetV3} & \color{red}0.00707 & \color{red}0.01499 & \color{red}0.01450 & \color{red}0.01362  \\\hline
         \textbf{SqueezeNet}  & 0.03703 & 0.03447 & 0.03849 & 0.03682 \\\hline
     \end{tabular}
-    \caption{Models performance\label{tab:training}}
+    \caption{Models performances\label{tab:training}}
+\end{table}
+
+\noindent
+Regarding efficiency, in terms of inference time and model size (Table \ref{tab:training_efficency}), as expected, SqueezeNet is the most lightweight model, achieving the smallest size and fast inference, especially on GPU, maintaining similar accuracy to the much heavier AlexNet. \
+
+While not as small as SqueezeNet, MobileNetV3 is significantly more compact and faster than AlexNet, and it achieves the best accuracy among all models.
+
+Inference times were calculated by averaging the individual datapoint inference times over the testset.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|r|c|c|c|} \hline
+        & \textbf{tCPU(ms)}   & \textbf{tGPU(ms)}   & \textbf{Size(MB)} \\\hline
+        \textbf{AlexNet}     & 5.3542 & 0.2395 & 142.29 \\\hline
+        \textbf{MobileNetV3} & 3.3972 & 0.8319 & 5.85 \\\hline
+        \textbf{SqueezeNet}  & 3.8984 & 0.3311 & 2.76 \\\hline
+    \end{tabular}
+    \caption{Models inference times with CPU and GPU and size\label{tab:training_efficency}}
 \end{table}

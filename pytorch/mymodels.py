@@ -52,6 +52,7 @@ def test_error(model, testset, device="cpu", loss_fn=nn.MSELoss()):
         testset, batch_size=4, shuffle=False, num_workers=2
     )
     test_loss = 0.0
+    model.to(device)
     model.eval()
     with no_grad():
         for data in testloader:
