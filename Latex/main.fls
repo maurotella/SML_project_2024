@@ -518,13 +518,13 @@ INPUT .\figures\trajectories.pdf
 INPUT C:\Users\mauro\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-ts1.enc
 INPUT C:\Users\mauro\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmr7.tfm
 INPUT C:\Users\mauro\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmr5.tfm
-INPUT .\sections\2_Data.tex
-INPUT .\sections\2_Data.tex
-INPUT sections\2_Data.tex
 INPUT C:\Users\mauro\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathit.enc
 INPUT C:\Users\mauro\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-rm.enc
 INPUT C:\Users\mauro\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathsy.enc
 INPUT C:\Users\mauro\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathex.enc
+INPUT .\sections\2_Data.tex
+INPUT .\sections\2_Data.tex
+INPUT sections\2_Data.tex
 INPUT .\figures\floorplan1.png
 INPUT .\figures\floorplan1.png
 INPUT .\figures\floorplan1.png

@@ -1,14 +1,22 @@
 \section{Data}
+To train our models, a dataset derived from 309 robot exploring simulations will be used.
 \subsection{Dataset composition}
 The dataset is composed of 4613 datapoints. Each datapoint is represented as a tuple $$(M, a, ate, are)$$
 where:
 \begin{enumerate}
-    \item $M\in[0,255]^{n\times n}$: floorplan images representend as grayscale maps that a robot has obtained 
+    \item $M\in[0,255]^{n\times n}$: robot maps representend as grayscale maps that a robot has obtained 
         during its navigation. Some examples are reported in Figure \ref{fig:floorplans};
     \item $a\in\mathbb{R}^+$: area measurements of the floorplan images, expressed in $m^2$;
     \item $ate\in\mathbb{R}^+$: ATE values, expressed in $m$;
     \item $are\in\mathbb{R}^+$: ARE values, expressed in $rad$;
 \end{enumerate}
+
+\noindent
+Maps were obtained incrementally during all robot exploration, starting from the beginning and extracting the
+current slam robot map every 30 seconds wall time until the environment was fully explored. The choice to use incremental maps is due to the fact that we wants to estimate ATE and ARE online, while the robot is navigating.
+
+The dataset has been randomly partitioned into training, validation, and test sets with proportions 70\%, 15\%, and 15\% respectively.
+
 \begin{figure}[H]
         \centering
         \begin{minipage}{0.32\textwidth}
@@ -25,6 +33,7 @@ where:
             \centering
             \includegraphics[width=\linewidth]{figures/floorplan3.png}
         \end{minipage}
+        \captionsetup{width=0.95\linewidth}
         \caption{Examples of grayscale floorplan images used as input; the white pixels represent the
         free area, the black pixels the obstacles and the gray pixels the unknown area.\label{fig:floorplans}}
     \end{figure}
@@ -32,7 +41,7 @@ where:
 \subsection{Data preprocessing}
 
 Evaluating the APE values shows that they are mainly distributed towards zero, with a significant presence of 
-outliers, especially for ATE values. Figure \ref{fig:dataBoxPlot} shows the box plot with highlighted the 
+outliers, especially for ATE values. Figure \ref{fig:dataBoxPlot} shows the histograms with highlighted the 
 0.99-quantile and the first value such that its Z-score is greater or equal to 3.5; the Z-score of a number 
 $x$ is $Z = \frac{x-\overline{x}}{\sigma}$ where $\overline{x}$ is the mean and $\sigma$ the standard deviation.
 \begin{figure}[H]
@@ -59,7 +68,7 @@ To facilitate our models to learn each quantity, the following strategies have b
     \item Rescaling: after the logarithmic rescaling, a linear rescaling to $[0,1]$ has been applied; let
         $\{x_1,\dots,x_n\}$ be interested values to be rescaled, the applied operation is 
         \begin{equation} \frac{x_i}{\underset{1\leq k \leq n}{\max}x_k} \tag*{i=1,\dots,n} \end{equation}
-        \begin{figure}[h]
+        \begin{figure}[H]
             \raggedleft
             \begin{minipage}{0.92\textwidth}
                 \includegraphics[width=\linewidth]{figures/APE_norm_hist.pdf}
@@ -87,7 +96,7 @@ To facilitate our models to learn each quantity, the following strategies have b
             \end{minipage}
             \caption{A floorplan (left) and its bounding square crop (right).\label{fig:squaredBox}}
         \end{figure}
-    \item Image resizing: each floorplan image is resized to $400 \times 400$ pixels to 
+    \item Image resizing: each floorplan image is resized to $224 \times 224$ pixels to 
         ensure a uniform input size for the neural network models;
 \end{itemize}
 

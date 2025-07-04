@@ -1,6 +1,6 @@
 \section{Training}
 
-In this section, the training phase of the model is described. Mean Squared Error (MSE) was chosen as the loss function; other functions like MAE or Huber loss were tested but showed lower performance than MSE. $k$-fold Cross Validation (CV) was used to estimate the generalization performance and to mitigate overfitting. For each fold, the model was trained on $k-1$ subsets and validated on the remaining one, rotating through all folds. This approach ensures that each data point is used for both training and validation, providing a more robust evaluation of model performance. A $k$ value of 5 was used.
+In this section, the training phase of the model is described. Mean Squared Error (MSE) was chosen as loss function; other functions like MAE or Huber loss were tested but showed lower performance than MSE. $k-$fold Cross Validation ($k-$CV) was used to estimate the generalization performance and to mitigate overfitting. For each fold, the model was trained on $k-1$ subsets and validated on the remaining one, rotating through all folds. This approach ensures that each data point is used for both training and validation, providing a more robust evaluation of model performance. A $k$ value of 5 was used.
 
 Each model was trained from scratch through the ADAM optimizer \cite{kingma2017adammethodstochasticoptimization} with the hyperparameters found in the previous section.
 

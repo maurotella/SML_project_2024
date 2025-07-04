@@ -7,8 +7,8 @@ The HP choice is essential to obtain the best performance of a neural network, a
 Only 3 Hyperparameters [with related possible values] will be considered in the models:
 \begin{enumerate}
     \item Learning rate: the step size at each iteration while moving toward a minimum of the loss function; it controls how much the model weights are updated during training. $[0.0001,0.1]$
-    \item Batch Size: the number of samples used to compute each update of the model weights; it influences the stability and speed of the training process. $\{2,4,8,16,32\}$
-    \item Dropout percentage: the fraction of input units to drop during training to prevent overfitting; it helps improve the model's ability to generalize. $[0,0.7]$
+    \item Batch Size: the number of samples used to compute each update of the model weights; it influences the stability and speed of the training process. $\{8,16,32,64,128\}$
+    \item Dropout percentage: the fraction of input units to drop during training to prevent overfitting; it helps improve the model's ability to generalize. $[0,0.6]$
 \end{enumerate}
 
 Given the use of state-of-the-art architectures, other HPs such as activation functions, layers number, and layer types have not been changed.
@@ -33,7 +33,7 @@ time or computational resources.
 
 In the next section the simplest search algorithms will be shown. Given the low number of HPs, the use of more
 sophisticated algorithms like Bayesan optimization or Gradient based optimization was not deemed necessary
-in favor of a simpler grid search.
+in favor of a simpler random search.
 
 \subsubsection{Grid search}
 Grid search is the most straightforward hyperparameter tuning algorithm. It discretizes the search space of each
@@ -79,19 +79,18 @@ thus, they waste massive time evaluating poorly-performance areas of the search 
 
 \subsection{Ray Tune}
 To perform the HPs optimization phase Ray Tune \cite{liaw2018tune}, an industrial standard tool for distributed HP 
-tuning, was used. Ray Tune enables efficient parallelization and management of multiple training runs, making it 
-suitable for a grid search strategy.
-
-The used search spaces for every HP are:
+tuning, was used. To find the optimal HPs configuration a random space was performed with the following search
+spaces:
 \begin{enumerate}
     \item Learning rate: the search was performed using \texttt{tune.loguniform} between $[0.0001,0.1]$, which 
     samples values $x$ such that $\log{x}$ is uniformly distributed between $\log{a}$ and $\log{b}$;
-    \item Batch size: grid space between $\{2,4,8,16,32\}$ was used;
-    \item Dropout percentage: grid space between $[0,0.7]$ was used dividing it into 35 equally spaced points.
+    \item Batch size: $\{8,16,32,64,128\}$;
+    \item Dropout percentage: $[0,0.6]$ divided in 12 equally spaced points.
 \end{enumerate}
 
-To run every HPs configuration trial Asynchronous Successive Halving Algorithm (ASHA) \cite
-{li2020massivelyparallelhyperparametertuning} was used. 
+\noindent
+To run every HPs configuration trial an Asynchronous Successive Halving Algorithm (ASHA) scheduler
+\cite{li2020massivelyparallelhyperparametertuning} was used. 
 
 \subsubsection{Asynchronous Successive Halving Algorithm}
 ASHA is an early stopping algorithm that efficiently 
@@ -100,25 +99,24 @@ allocates resources by quickly terminating underperforming trials and allocating
 More precisely, ASHA's procedure can be summarized as follows:
 \begin{enumerate}
     \item Launch many trials, one per HPs configuration;
-    \item Every trial is performed for at least $g$ epochs;
-    \item After $g$ epochs all trials that have reached the same amount of epochs are evaluated;
+    \item Every trial is performed for at least $g$ time units;
+    \item After $g$ time units all trials that have reached the same amount of time units are evaluated;
     \item Only a $1/r$ fraction of the best trials are kept, while the others are early stopped;
     \item The remaining trials continue to be performed and will be evaluated in the next round;
-    \item Only the trials that survive all rounds are trained until the maximum number of epochs or until
+    \item Only the trials that survive all rounds are trained until the maximum number of time units or until
     convergence.
 \end{enumerate}
 
-where $g$ is the minimum number of epochs that each trial must run before being considered for early stopping, and $r$
-is the reduction factor determining the proportion of trials retained at each round.
+where $g$ is the minimum number of time units that each trial must run before being considered for early stopping,
+and $r$ is the reduction factor determining the proportion of trials retained at each round. Time units can be any
+resource such as epochs, fold of CV, or wall-clock time, depending on the specific application.
 
-This approach significantly reduces the computational cost compared to evaluating all configurations for the full
-number of epochs, while still identifying high-performing hyperparameter settings.
+This approach significantly reduces the computational cost compared to evaluating all random configurations for the full
+number of time units, while still identifying high-performing hyperparameter settings.
 
 \subsection{Results}
 
-For each models, 175 hyperparameter configurations were analyzed with a maximum of 10 epochs per configuration and
-a minimum of 3 epochs. Given the large number of trials, to evaluate every trial, it was preferred not to use Cross 
-Validation in favor of a validation set.
+For each model, 20 random hyperparameter configurations were analyzed using $5$-fold cross-validation to evaluate their performance. For each fold 10 epochs were performed. CV folds were used as time units with a minimum of 2 folds ($g$) and a maximum of 5 folds. In this way, if a configuration performed poorly on the first 2 folds it was stopped early by the ASHA scheduler as it is unlikely that it would outperform other configurations.
 
 The results of HPs optimization are shown in Table \ref{tab:HPO}.
 
@@ -126,16 +124,11 @@ The results of HPs optimization are shown in Table \ref{tab:HPO}.
     \centering
     \begin{tabular}{|r|c|c|c|} \hline
                         & \textbf{AlexNet}   & \textbf{MobileNetV3}   & \textbf{SqueezeNet} \\\hline
-        Learning rate   & \num{2.6062e-4}  & \num{2.5266e-4}  & \num{2.8481e-2} \\\hline
-        Batch size      & 8         & 32             & 32 \\\hline
-        Dropout perc.   & 0.0412    & 0.3089         & 0 \\\hline
+        Learning rate   & \num{}  & \num{}  & \num{}    \\\hline
+        Batch size      &         &         &           \\\hline
+        Dropout perc.   &         &         &           \\\hline
     \end{tabular}
     \caption{HPs optimization results\label{tab:HPO}}
 \end{table}
 
-It is noteworthy that the HPs optimization process found that SqueezeNet achieves its best performance without
-dropout. This suggests that, for this architecture, regularization through dropout is detrimental given the small 
-size of the model.
-
-To obtain this results, each model require, more or less, 2 hours with an NVIDIA RTX 3090 as GPU and an Intel
-Core i7-12700K as CPU.
+7.5 hourse were required to achieve these results with an NVIDIA RTX 3090 as GPU and an Intel Core i7-12700K as CPU.

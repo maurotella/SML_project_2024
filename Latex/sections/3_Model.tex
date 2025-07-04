@@ -1,8 +1,11 @@
 \section{Models}
 
-In this project, different architectures are used, all based on Convolutional Neural Networks (CNNs) to 
-delegate feature extraction to the model, directly using the environment floorplan image as input. Three
-distinct models were used:
+In this project, different architectures are used, all based on Convolutional Neural Networks (CNNs) to delegate
+feature extraction to the model and an head fully connected network (FC) to map these features, together with the
+map area, to the target regression outputs (ATE and ARE). The map area value skip the CNN because,
+otherwise, the scaling done by the model in the initial stage would cause the true value of the area to be lost.
+
+Three distinct models were used:
 \begin{enumerate}
     \item AlexNet \cite{NIPS2012_c399862d}, one of the first successful architectures in the field of CNNs. It will be a baseline for the other models;
     \item MobileNetV3 \cite{howard2019searchingmobilenetv3}, the state of the art of
@@ -12,11 +15,12 @@ distinct models were used:
 \end{enumerate}
 
 \noindent
+The choice of the last two architectures is aimed at achieving a lightweight predictor that can easily run on limited hardware, such as mobile robots or embedded systems. These models, indeed, are designed to minimize memory usage and computational requirements, making them suitable for real-time applications where resources are constrained.
+
 Formally, the model $h$ we aim to learn can be expressed as follows:
 $$ h: [0,255]^{n\times n} \times \mathbb{R}^+ \rightarrow \mathbb{R}^2 $$
-where $[0,255]^{n\times n}$ is a floorplan image encoded as an $n\times n$ grayscale image, $\mathbb{R}^+$ 
+where $[0,255]^{n\times n}$ is a robot map encoded as an $n\times n$ grayscale image, $\mathbb{R}^+$ 
 is the area of the floorplan expressed in $m^2$, and $\mathbb{R}^2$ contains ATE ($m$) and ARE ($rad$).
-
 
 
 \subsection{AlexNet} \label{sec:AlexNet}
@@ -24,7 +28,7 @@ To begin, a model based on AlexNet was chosen, one of the first successful archi
 convolutional neural networks. AlexNet consists of several convolutional layers followed by fully 
 connected layers, using ReLU activations and max-pooling. The relatively large number of layers without 
 the use of modern techniques to lighten its computational load, makes this model a deep CNN resulting in
-a high number of parameters (\num{37298882}).
+a high number of parameters ($\approx\num{37298882}$).
 The abstract structure is shown on Figure
 \ref{fig:AlexNet}.
 
@@ -38,16 +42,20 @@ The abstract structure is shown on Figure
 Two main sections can be outlined: 
 \begin{enumerate}
     \item A CNN feature extractor: it processes the input image through a series of convolutional and 
-        pooling layers, resulting in a condensed set of features;
+        max pooling layers, resulting in a condensed set of features;
     \item A Regression head: it predicts ATE and ARE values through some fully connected layers whose
         input is the set of features extracted from the CNN;
 \end{enumerate}
 
 \noindent
-Note that the first layer of the regression head has size 4097 instead of 4096, since the area of the 
-floorplan is added as an input concatenated to the feature vector extracted by the CNN. This is because
-otherwise the scaling done by the model in the initial stage would cause the true value of the area to
-be lost. This procedure was done on all three proposed models.
+ReLU, defined as $\text{ReLU}(x) = \max(0, x)$, is used as the activation function in both the convolutional 
+and fully connected layers. 
+A batch normalization layer was added between each convolutional layer, before ReLU. This layer normalizes the output to have zero mean and unit variance applying the following trasformation:
+$$ \text{BatchNorm}(x) = \hat{x} = \frac{x-\mu_B}{\sqrt{\sigma^2_B+\varepsilon}} $$
+and then translates and scales:
+$$ y = \gamma\hat{x}+\beta $$
+where $\gamma$ and $\beta$ are two learned parameters, $\mu_B$ is the mean of the batch $B$, $\sigma^2_B$
+is the variance of the batch $B$ and $\varepsilon$ is an arbitrary small constant added for numerical stability.
 
 \subsubsection{Dropout}
 To reduce overfitting, the dropout technique \cite{srivastava2014dropout} is applied within the fully
@@ -152,7 +160,7 @@ the interdependencies between channels. As the name suggests, there are two phas
 \subsubsection{HardSwish Activation function}
 To improve the accuracy of the neural networks ReLU was replaced by a new activation function called 
 \textit{swish}, defined as:
-$$ \text{swish}\ x = x\cdot \sigma(x) $$
+$$ \text{swish}(x) = x\cdot \sigma(x) $$
 where $\sigma$ is the sigmoid function $\sigma(x)=1/(1+e^{-x})$.
 However, despite swish improves accuracy, it is computationally expensive for mobile devices. To address 
 this, MobileNetV3 introduces the \textit{HardSwish} activation function, which approximates swish while 
@@ -179,8 +187,8 @@ and mobile AI.
 
 Another aspect of SqueezeNet is the absence of a Fully Connected (FC) layer; this is simply because 
 these kind of layers use a large number of parameters. In our model, shown in Figure \ref{fig:squeezeDiag}, 
-a small FC layer was added so that the area value was also utilized. This addition resulted in a very 
-slight increase in the model parameters, precisely 362.
+a small FC multi-layer (FCML) was added so that the area value was also utilized. The FCML is composed of 3 
+linear layers with ReLU as activation function and dropout. This addition resulted in a very slight increase in the model parameters, precisely 1282.
 
 \begin{figure}[H]
     \vspace{0.8em}
