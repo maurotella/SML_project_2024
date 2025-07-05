@@ -49,7 +49,7 @@ $x$ is $Z = \frac{x-\overline{x}}{\sigma}$ where $\overline{x}$ is the mean and 
     \includegraphics[width=\linewidth]{figures/APE_box.pdf}
     \vspace{-2em}
     \captionsetup{width=0.95\linewidth}
-    \caption{Box plot of the ATE (top) and ARE (bottom) values; is also shown the 0.99-quantile (red line) and 
+    \caption{Box plot of the ATE (top) and ARE (bottom) values with log scale on the y axe; is also shown the 0.99-quantile (red line) and 
     the first value with a z-score equal to 3.5 (blue line).\label{fig:dataBoxPlot}}
 \end{figure}
 
@@ -68,14 +68,15 @@ To facilitate our models to learn each quantity, the following strategies have b
     \item Rescaling: after the logarithmic rescaling, a linear rescaling to $[0,1]$ has been applied; let
         $\{x_1,\dots,x_n\}$ be interested values to be rescaled, the applied operation is 
         \begin{equation} \frac{x_i}{\underset{1\leq k \leq n}{\max}x_k} \tag*{i=1,\dots,n} \end{equation}
-        \begin{figure}[H]
+        \begin{figure}[ht]
             \raggedleft
             \begin{minipage}{0.92\textwidth}
-                \includegraphics[width=\linewidth]{figures/APE_norm_hist.pdf}
+                \includegraphics[width=0.9\linewidth]{figures/APE_norm_hist.pdf}
             \end{minipage}
             \vspace{-1em}
-            \caption{Dataset values after the log and linear rescaling.}
+            \caption{Dataset values after the log and linear rescaling.\label{fig:datahisttransf}}
         \end{figure}
+        Figure \ref{fig:datahisttransf} shows data distribution after all the trasformations.
 
     \item Image cropping: each map has been cropped to remove unnecessary borders, focusing only on the relevant 
         area to reduce input size and eliminate irrelevant background; the crop is always squared in order to

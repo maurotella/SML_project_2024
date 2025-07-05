@@ -1,47 +1,107 @@
 \section{Training}
 
-In this section, the training phase of the model is described. Mean Squared Error (MSE) was chosen as loss function; other functions like MAE or Huber loss were tested but showed lower performance than MSE. $k-$fold Cross Validation ($k-$CV) was used to estimate the generalization performance and to mitigate overfitting. For each fold, the model was trained on $k-1$ subsets and validated on the remaining one, rotating through all folds. This approach ensures that each data point is used for both training and validation, providing a more robust evaluation of model performance. A $k$ value of 5 was used.
+In this section, the training phase of the model is described. Mean Squared Error (MSE) was chosen as loss function; other functions like MAE or Huber loss were tested but showed lower performance than MSE. The training duration was 50 epochs. $k-$fold Cross Validation ($k-$CV) was used to estimate the generalization performance and to mitigate overfitting. For each fold, the model was trained on $k-1$ subsets, always with 50 epochs, and validated on the remaining one, rotating through all folds. This approach ensures that each data point is used for both training and validation, providing a more robust evaluation of model performance. A $k$ value of 5 was used.
 
-Each model was trained from scratch through the ADAM optimizer \cite{kingma2017adammethodstochasticoptimization} with the hyperparameters found in the previous section.
-
-\subsection{ADAM}
-Adam combines the strengths of two other popular optimizers: 
-\begin{itemize}
-    \item Stochastic Gradient Descent (SGD) with momentum:  updates the parameters by combining the current gradient with an exponential average of past gradients, so as to accelerate optimization in consistent directions and reduce oscillations.
-    \item RMSProp: it dynamically adjusts the learning rate of each parameter by dividing the gradient by an average of its recent magnitudes, improving stability and convergence especially with noisy or differently scaled gradients.
-\end{itemize}
-
-This combination of techniques allows ADAM to be more efficient and robust on noisy datasets.
+Each model was trained from scratch through the Stochastic Gradient Descent (SGD) optimizer with learning rate and momentum found in the previous section and using batch size and dropout found in the previous section.
 
 \subsection{Training results}
-
-The results are shown in Table~\ref{tab:training}. A Pareto dominance of MobileNetV3 is evident, as it achieves, by far, the lowest loss values across all metrics compared to the other models. This indicates that MobileNetV3 outperforms, in terms of accuracy, both AlexNet and SqueezeNet. This superiority was to be expected since AlexNet is an obsolete model compared to MobileNetV3 and SqueezeNet focuses more on model reduction than accuracy. 
+\subsubsection{Prediction performance}
+Performance results are shown in Table \ref{tab:training} in terms of losses and Table \ref{tab:r2score} in terms of $R^2$-Score, RMSE and NRMSE. Looking at the first table, SqueezeNet outperforms the others in all losses
+except for the $5-$CV loss, suggesting a worse generalization of the model.
+AlexNet and MobileNetV3 show similar results in all losses with a slight advantage of the latter and a good generalization.
 
 \begin{table}[H]
     \centering
     \begin{tabular}{|r|c|c|c|c|} \hline
-        & \textbf{Train loss}   & \textbf{Valid. Loss}   & \textbf{Test Loss} & \textbf{$5-$CV Loss} \\\hline
-        \textbf{AlexNet}     & 0.03394 & 0.03214 & 0.03476 & 0.03489 \\\hline
-        \textbf{MobileNetV3} & \color{red}0.00707 & \color{red}0.01499 & \color{red}0.01450 & \color{red}0.01362  \\\hline
-        \textbf{SqueezeNet}  & 0.03703 & 0.03447 & 0.03849 & 0.03682 \\\hline
+        \textbf{Models} & \textbf{Train loss}   & \textbf{Valid. Loss}   & \textbf{Test Loss} & \textbf{$5-$CV Loss} \\\hline
+        AlexNet     & 0.01804 & 0.01808 & 0.01691 & 0.01718 \\\hline
+        MobileNetV3 & 0.01615 & 0.01807 & 0.01718 & \color{red}{0.01667}  \\\hline
+        SqueezeNet  & \color{red}{0.01340} & \color{red}{0.01437} & \color{red}{0.01309} & 0.02040 \\\hline
     \end{tabular}
-    \caption{Models performances\label{tab:training}}
+    \caption{Models performances in terms of loss values\label{tab:training}}
 \end{table}
 
 \noindent
-Regarding efficiency, in terms of inference time and model size (Table \ref{tab:training_efficency}), as expected, SqueezeNet is the most lightweight model, achieving the smallest size and fast inference, especially on GPU, maintaining similar accuracy to the much heavier AlexNet. \
+In Table \ref{tab:r2score} the following metrics are used:
+\[
+\begin{array}{r@{\hspace{1.1cm}}r@{\hspace{1.1cm}}r}
+    R^2 = 1-\displaystyle\frac{\sum_i(y_i-\hat{y}_i)^2}{\sum_i(y_i-\overline{y})^2} &
+    \text{RMSE} = \displaystyle\sqrt{\frac{\sum_i(y_i-\hat{y}_i)^2}{n}} &
+    \text{NRMSE} = \displaystyle\frac{\text{RMSE}}{\max_i \hat{y}_i - \min_i \hat{y}_i}
+\end{array}
+\]
+where $y_i$ is the $i$-th real value and $\hat{y}_i$ its prediction, $\overline{y}$ the mean of the real values and $n$ the number of data points.
 
-While not as small as SqueezeNet, MobileNetV3 is significantly more compact and faster than AlexNet, and it achieves the best accuracy among all models.
+Here again SqueezeNet outperforms the other models in all cases except NRMSE for ATE where it still gets a good value compared to the others. AlexNet has Pareto worst performance while MobileNetV3 stays in the middle.
 
-Inference times were calculated by averaging the individual datapoint inference times over the testset.
+\begin{table}[H]\centering
+\begin{tabular}{r|ccc|ccc|}
+\cline{2-7}
+\multicolumn{1}{l|}{}                 & \multicolumn{3}{c|}{\textbf{ATE}}                                                                           & \multicolumn{3}{c|}{\textbf{ARE}}                                                                                                                           \\ \hline
+\multicolumn{1}{|r|}{\textbf{Models}} & \multicolumn{1}{c|}{$\bm{R^2}$} & \multicolumn{1}{c|}{\textbf{RMSE}} & \multicolumn{1}{c|}{\textbf{NRMSE}} & \multicolumn{1}{c|}{$\bm{R^2}$} & \multicolumn{1}{c|}{\textbf{RMSE}} & \multicolumn{1}{c|}{\textbf{NRMSE}} \\ \hline
+\multicolumn{1}{|r|}{Alexnet}         & \multicolumn{1}{c|}{0.4}            & \multicolumn{1}{c|}{1.19}              &        0.28                          & \multicolumn{1}{c|}{0.81}            & \multicolumn{1}{c|}{0.017}              &                 0.086                                        \\ \hline
+\multicolumn{1}{|r|}{MobileNetV3}       & \multicolumn{1}{c|}{0.46}            & \multicolumn{1}{c|}{1.13}              & \color{red}0.164                           & \multicolumn{1}{c|}{0.85}            & \multicolumn{1}{c|}{0.016}              &       0.078                                                      \\ \hline
+\multicolumn{1}{|r|}{SqueezeNet}      & \multicolumn{1}{c|}{\color{red}0.5}            & \multicolumn{1}{c|}{\color{red}1.09}              &          0.19                       & \multicolumn{1}{c|}{\color{red}0.92}            & \multicolumn{1}{c|}{\color{red}0.011}              &  \color{red}0.056                                                     \\ \hline
+\end{tabular}
+\captionsetup{width=0.93\linewidth}
+\caption{Performance comparison in terms of $R^2$-Score, RMSE ($m$) and NRMSE (\% with respect to the range of predicted values)\label{tab:r2score}}
+\end{table}
+
+It should be highlighted, however, that all models have a very high RMSE for the ATE. An error of 1 $m$, when used to correct SLAM prediction of trajectories, is too high and would irreparably damage the robot's navigation. To understand this problem, a small analysis was conducted.
+
+Let $R=\{r_1,\dots,r_n\}$ be the set of real ATE values present in dataset and $P=\{p_1,\dots,p_n\}$ be the corresponding predicition. Figure \ref{fig:highATE} shows the scatter plots of each model with the real values in the $x$ axis and the absolute error $|r_i-p_i|$ between the real values and predictions in the $y$ axis.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/highATEanalysis.pdf} \vspace{-2em}
+    \captionsetup{width=0.93\linewidth}
+    \caption{Scatter plots for real values and absolute prediction error. In orange the regression line\label{fig:highATE}} 
+\end{figure}
+\vspace{-1.7em}
+\noindent
+\begin{minipage}{0.47\textwidth}
+    It is evident from the figures a correlation between the real values and the absolute prediction error: the higher the real ATE value, the more the predictor is wrong. This simply means that most of the high ATE values are predicted with a low values and thus the error remains high. In this way the models failed to learn with big ATE values leading to having such a high RMSE. The very skew distribution, showed in Figure \ref{fig:highATEhist}, combined with the low dataset dimension, could be the main causes of this. 
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+    \hfill
+    \begin{figure}[H]
+        \includegraphics[width=.94\textwidth, right]{figures/APE_cutted.pdf} \vspace{-2.7em}
+        \captionsetup{width=0.93\linewidth}
+        \caption{Histogram of $R$\label{fig:highATEhist}} 
+    \end{figure}
+\end{minipage}
+\vspace{1.7em}
+
+\noindent
+The learning curves obtained during the training phase are shown in Figure \ref{fig:learnCurve}. The $5-$CV loss and the test loss are highlighted, providing a visual comparison of the models generalization capabilities and their performance on unseen data. 
+
+In all models no evident signs of overfitting are present as the validation loss never deviates too much from the training loss. AlexNet has the smoothest descent. MobileNetV3 in the first 25 epochs shows a small gap between validation and training loss which, however, is narrowing in later epochs. In both AlexNet and MobileNetV3 test and $5-$CV loss are very similar and close to the learning curves indicating good generalization of the models as the models perform well on both seen and unseen data. SqueezeNet shows a similar situation with a higher $5-$CV indicating a possible lower capacity of the model to generalize.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/learning_curves.pdf}
+    \includegraphics[width=.5\textwidth]{figures/learning_curves2.pdf}
+    \caption{Learning curves of models; highlighted also the $5-$CV loss and the test loss\label{fig:learnCurve}}
+\end{figure}
+
+\subsubsection{Efficency}
+Regarding efficiency, in terms of inference time and model size, shown in Table \ref{tab:training_efficency}, as expected, SqueezeNet is the most lightweight model and AlexNet, by far, the heaviest.
+
+MobileNetV3 turns out to be, in general, the fastest model with the lowest CPU time and a slightly slower GPU than AlexNet, which, counterintuitively, is the fastest in terms of GPU time. The latter fact is mainly due to the simple structure of the model, consisting of only basic operations that are highly optimized in modern GPU.
+
+So, overall, MobileNetV3 finishes as the most efficient model among those seen in this work.
+
+Inference times were calculated by averaging the individual datapoint inference times over the test set. Only  batchs of one element are used. This because we wanted to analyze inference times in real time applications, where what matters is immediate responsiveness and not throughput.
 
 \begin{table}[H]
     \centering
     \begin{tabular}{|r|c|c|c|} \hline
-        & \textbf{tCPU(ms)}   & \textbf{tGPU(ms)}   & \textbf{Size(MB)} \\\hline
-        \textbf{AlexNet}     & 5.3542 & 0.2395 & 142.29 \\\hline
-        \textbf{MobileNetV3} & 3.3972 & 0.8319 & 5.85 \\\hline
-        \textbf{SqueezeNet}  & 3.8984 & 0.3311 & 2.76 \\\hline
+        \textbf{Models} & \textbf{tCPU(ms)}   & \textbf{tGPU(ms)}   & \textbf{Size(MB)} \\\hline
+        AlexNet     & 16.8166 & \color{red} 0.2523 & 142.3 \\\hline
+        MobileNetV3 & \color{red}1.4469 & 0.5893 & 5.86 \\\hline
+        SqueezeNet  & 3.1651 & 0.3553 & \color{red}2.76 \\\hline
     \end{tabular}
-    \caption{Models inference times with CPU and GPU and size\label{tab:training_efficency}}
+    \caption{Models inference times with CPU and GPU and sizes\label{tab:training_efficency}
+    \label{fig:learningcurve}}
 \end{table}
