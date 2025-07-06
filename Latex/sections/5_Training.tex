@@ -1,6 +1,8 @@
 \section{Training}
 
-In this section, the training phase of the model is described. Mean Squared Error (MSE) was chosen as loss function; other functions like MAE or Huber loss were tested but showed lower performance than MSE. The training duration was 50 epochs. $k-$fold Cross Validation ($k-$CV) was used to estimate the generalization performance and to mitigate overfitting. For each fold, the model was trained on $k-1$ subsets, always with 50 epochs, and validated on the remaining one, rotating through all folds. This approach ensures that each data point is used for both training and validation, providing a more robust evaluation of model performance. A $k$ value of 5 was used.
+In this section, the training phase of the model is described, followed by an evaluation of performance on real robot navigations.
+
+Mean Squared Error (MSE) was chosen as loss function; other functions like MAE or Huber loss were tested but showed lower performance than MSE. The training duration was 50 epochs. $k-$fold Cross Validation ($k-$CV) was used to estimate the generalization performance and to mitigate overfitting. For each fold, the model was trained on $k-1$ subsets, always with 50 epochs, and validated on the remaining one, rotating through all folds. This approach ensures that each data point is used for both training and validation, providing a more robust evaluation of model performance. A $k$ value of 5 was used.
 
 Each model was trained from scratch through the Stochastic Gradient Descent (SGD) optimizer with learning rate and momentum found in the previous section and using batch size and dropout found in the previous section.
 
@@ -47,31 +49,6 @@ Here again SqueezeNet outperforms the other models in all cases except NRMSE for
 \caption{Performance comparison in terms of $R^2$-Score, RMSE ($m$) and NRMSE (\% with respect to the range of predicted values)\label{tab:r2score}}
 \end{table}
 
-It should be highlighted, however, that all models have a very high RMSE for the ATE. An error of 1 $m$, when used to correct SLAM prediction of trajectories, is too high and would irreparably damage the robot's navigation. To understand this problem, a small analysis was conducted.
-
-Let $R=\{r_1,\dots,r_n\}$ be the set of real ATE values present in dataset and $P=\{p_1,\dots,p_n\}$ be the corresponding predicition. Figure \ref{fig:highATE} shows the scatter plots of each model with the real values in the $x$ axis and the absolute error $|r_i-p_i|$ between the real values and predictions in the $y$ axis.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{figures/highATEanalysis.pdf} \vspace{-2em}
-    \captionsetup{width=0.93\linewidth}
-    \caption{Scatter plots for real values and absolute prediction error. In orange the regression line\label{fig:highATE}} 
-\end{figure}
-\vspace{-1.7em}
-\noindent
-\begin{minipage}{0.47\textwidth}
-    It is evident from the figures a correlation between the real values and the absolute prediction error: the higher the real ATE value, the more the predictor is wrong. This simply means that most of the high ATE values are predicted with a low values and thus the error remains high. In this way the models failed to learn with big ATE values leading to having such a high RMSE. The very skew distribution, showed in Figure \ref{fig:highATEhist}, combined with the low dataset dimension, could be the main causes of this. 
-\end{minipage}
-\begin{minipage}{0.5\textwidth}
-    \hfill
-    \begin{figure}[H]
-        \includegraphics[width=.94\textwidth, right]{figures/APE_cutted.pdf} \vspace{-2.7em}
-        \captionsetup{width=0.93\linewidth}
-        \caption{Histogram of $R$\label{fig:highATEhist}} 
-    \end{figure}
-\end{minipage}
-\vspace{1.7em}
-
 \noindent
 The learning curves obtained during the training phase are shown in Figure \ref{fig:learnCurve}. The $5-$CV loss and the test loss are highlighted, providing a visual comparison of the models generalization capabilities and their performance on unseen data. 
 
@@ -105,3 +82,31 @@ Inference times were calculated by averaging the individual datapoint inference 
     \caption{Models inference times with CPU and GPU and sizes\label{tab:training_efficency}
     \label{fig:learningcurve}}
 \end{table}
+
+\subsection{SLAM predicition evaluation}
+It should be highlighted that all models have a very high RMSE for the ATE, as Table \ref{tab:r2score} shows. An error of 1 $m$, when used to correct SLAM prediction of trajectories, could be too high and would irreparably damage the robot's navigation. To understand this problem, a small analysis was conducted.
+
+\subsubsection{Analysis of high RMSE}
+Let $R=\{r_1,\dots,r_n\}$ be the set of real ATE values present in dataset and $P=\{p_1,\dots,p_n\}$ be the corresponding predicition. Figure \ref{fig:highATE} shows the scatter plots of each model with the real values in the $x$ axis and the error $r_i-p_i$ between the real values and predictions in the $y$ axis. The data used are from the test set.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/highATEanalysis.pdf} \vspace{-2em}
+    \captionsetup{width=0.93\linewidth}
+    \caption{Scatter plots for real values and absolute prediction error. In orange the bisector of the positive axes\label{fig:highATE}} 
+\end{figure}
+\vspace{-1.7em}
+\noindent
+\begin{minipage}{0.47\textwidth}
+    It is evident from the figures a correlation between the real values and the prediction error: the higher the real ATE value, the more the predictor is wrong. This simply means that most of the high ATE values are predicted with a low values and thus the error remains high. In this way the models failed to learn with big ATE values leading to having such a high RMSE. The very skew distribution, showed in Figure \ref{fig:highATEhist}, combined with the low dataset dimension, could be the main causes of this.
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+    \hfill
+    \begin{figure}[H]
+        \includegraphics[width=.94\textwidth, right]{figures/APE_cutted.pdf} \vspace{-2.7em}
+        \captionsetup{width=0.93\linewidth}
+        \caption{Histogram of $R$\label{fig:highATEhist}} 
+    \end{figure}
+\end{minipage}
+
+\subsubsection{Incremental APE evaluation}
