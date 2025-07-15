@@ -98,8 +98,7 @@ The main goal of this project is to propose a predictor for the SLAM performance
 before running the SLAM algorithm or during its execution, using features and informations derived from a 
 running robot and thus without any ground truth.
 
-This type of prediction can improve the robustness and efficiency of autonomous mobile systems since the 
-position error (APE) can be used to correct the robot trajectory.
+This type of prediction can improve the robustness and efficiency of autonomous mobile systems using APE to correct the robot trajectory or detecting when the errors committed by the slam have grown too much to obtain a usable map.
 
 The work in \cite{Luperto} proposes two main APE predictors, one based on linear regression, and another one
 based on a Gaussian Process via an RBF Kernel. Although Gaussian Process regression showed slightly better

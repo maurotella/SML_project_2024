@@ -55,7 +55,7 @@ The learning curves obtained during the training phase are shown in Figure \ref{
 In all models no evident signs of overfitting are present as the validation loss never deviates too much from the training loss. AlexNet has the smoothest descent. MobileNetV3 in the first 25 epochs shows a small gap between validation and training loss which, however, is narrowing in later epochs. In both AlexNet and MobileNetV3 test and $5-$CV loss are very similar and close to the learning curves indicating good generalization of the models as the models perform well on both seen and unseen data. SqueezeNet shows a similar situation with a higher $5-$CV indicating a possible lower capacity of the model to generalize.
 
 
-\begin{figure}[H]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{figures/learning_curves.pdf}
     \includegraphics[width=.5\textwidth]{figures/learning_curves2.pdf}
@@ -87,26 +87,22 @@ Inference times were calculated by averaging the individual datapoint inference 
 It should be highlighted that all models have a very high RMSE for the ATE, as Table \ref{tab:r2score} shows. An error of 1 $m$, when used to correct SLAM prediction of trajectories, could be too high and would irreparably damage the robot's navigation. To understand this problem, a small analysis was conducted.
 
 \subsubsection{Analysis of high RMSE}
-Let $R=\{r_1,\dots,r_n\}$ be the set of real ATE values present in dataset and $P=\{p_1,\dots,p_n\}$ be the corresponding predicition. Figure \ref{fig:highATE} shows the scatter plots of each model with the real values in the $x$ axis and the error $r_i-p_i$ between the real values and predictions in the $y$ axis. The data used are from the test set.
-
+After rechecking the data, it was found that in many cases the ATE values, used as real values, were derived from \quotes{broken} simulations. To clarify the meaning of \quotes{broken}, let see Figure \ref{fig:high_ATE_traj}. It is evident that, at some point, something went wrong and the SLAM trajectory, in blue, became corrupted (left figure). This leads to having such a high ATE values (central figure). One might think that this leads to having, as a result, an unusable map, however, the map obtained (right figure) turns out to be accurate.
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{figures/highATEanalysis.pdf} \vspace{-2em}
-    \captionsetup{width=0.93\linewidth}
-    \caption{Scatter plots for real values and absolute prediction error. In orange the bisector of the positive axes\label{fig:highATE}} 
+    \begin{minipage}{0.31\textwidth}
+        \includegraphics[width=\textwidth]{figures/high_ATE.pdf}
+    \end{minipage}
+    \begin{minipage}{0.4\textwidth}
+        \includegraphics[width=\textwidth]{figures/high_ATE_plot.pdf}
+    \end{minipage}
+    \begin{minipage}{0.25\textwidth}
+        \includegraphics[width=\textwidth]{figures/high_ATE_map.png}
+    \end{minipage}
+    \captionsetup{width=0.95\linewidth}
+    \caption{Comparison of real and SLAM trajectories (left), ATE over time (center) and final SLAM map (center) in a simulation\label{fig:high_ATE_traj}}
 \end{figure}
-\vspace{-1.7em}
-\noindent
-\begin{minipage}{0.47\textwidth}
-    It is evident from the figures a correlation between the real values and the prediction error: the higher the real ATE value, the more the predictor is wrong. This simply means that most of the high ATE values are predicted with a low values and thus the error remains high. In this way the models failed to learn with big ATE values leading to having such a high RMSE. The very skew distribution, showed in Figure \ref{fig:highATEhist}, combined with the low dataset dimension, could be the main causes of this.
-\end{minipage}
-\begin{minipage}{0.5\textwidth}
-    \hfill
-    \begin{figure}[H]
-        \includegraphics[width=.94\textwidth, right]{figures/APE_cutted.pdf} \vspace{-2.7em}
-        \captionsetup{width=0.93\linewidth}
-        \caption{Histogram of $R$\label{fig:highATEhist}} 
-    \end{figure}
-\end{minipage}
 
-\subsubsection{Incremental APE evaluation}
+\noindent
+In this way, all datapoints that fall into this situation, are inconsistent. With a quick test it turned out that the inconsistent datapoints are $\sim$22\% of the dataset and this probably led the RMSE (Table \ref{tab:r2score}) to be so high.
+
+A final investigation found that detecting whether a map is accurate or not, is still an open problem; Birk \cite{birk2010quantitative} introduced the concept of brokeness which aims to quantitatively assess the quality of SLAM-generated maps. Although this metric is useful for a discussion of map quality, it remains a qualitative tool. So, the only accurate way to understand if a map is accurate or not is through manual supervision. For this reason, cleaning this type of dataset is a time-consuming task.

@@ -831,6 +831,37 @@
       \verb https://arxiv.org/abs/1810.05934
       \endverb
     \endentry
+    \entry{birk2010quantitative}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=83ecc10c2a7d98cac12df0f6c74665c6}{%
+           family={Birk},
+           familyi={B\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{83ecc10c2a7d98cac12df0f6c74665c6}
+      \strng{fullhash}{83ecc10c2a7d98cac12df0f6c74665c6}
+      \strng{fullhashraw}{83ecc10c2a7d98cac12df0f6c74665c6}
+      \strng{bibnamehash}{83ecc10c2a7d98cac12df0f6c74665c6}
+      \strng{authorbibnamehash}{83ecc10c2a7d98cac12df0f6c74665c6}
+      \strng{authornamehash}{83ecc10c2a7d98cac12df0f6c74665c6}
+      \strng{authorfullhash}{83ecc10c2a7d98cac12df0f6c74665c6}
+      \strng{authorfullhashraw}{83ecc10c2a7d98cac12df0f6c74665c6}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Autonomous Robots}
+      \field{number}{2}
+      \field{title}{A quantitative assessment of structural errors in grid maps}
+      \field{volume}{28}
+      \field{year}{2010}
+      \field{pages}{187\bibrangedash 196}
+      \range{pages}{10}
+    \endentry
   \enddatalist
 \endrefsection
 \endinput

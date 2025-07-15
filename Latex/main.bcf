@@ -2392,6 +2392,7 @@
     <bcf:citekey order="18" intorder="1">YANG2020295</bcf:citekey>
     <bcf:citekey order="19" intorder="1">liaw2018tune</bcf:citekey>
     <bcf:citekey order="20" intorder="1">li2020massivelyparallelhyperparametertuning</bcf:citekey>
+    <bcf:citekey order="21" intorder="1">birk2010quantitative</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">
