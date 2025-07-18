@@ -3,7 +3,7 @@
 Now that the models have been defined in the previous section, an Hyperparameter (HP) optimization phase 
 is needed.
 The HP choice is essential to obtain the best performance of a neural network, and it can significantly influence the model's ability to generalize to unseen data. 
-
+\noindent
 Only 4 Hyperparameters [with related possible values] are considered in the models:
 \begin{enumerate}
     \item Learning rate: the step size at each iteration while moving toward a minimum of the loss function; it controls how much the model weights are updated during training. $[0.0001,0.01]$
@@ -14,17 +14,18 @@ Only 4 Hyperparameters [with related possible values] are considered in the mode
 
 Given the use of state-of-the-art architectures, other HPs such as activation functions, layers number, and layer types have not been changed.
 
-\subsection{Search Algorithms}
-The search for optimal HP values can be done in two ways: manually setting them based on prior experience or 
+\subsection{Search Algorithms for HPO}
+The search for optimal HP values can be done, among others, in two ways: manually setting them based on prior experience or 
 intuition, or using automated search algorithms.
 
 Although manual testing remains one of the most widely used methods, especially in the student environment, it
 requires a deep knowledge of the used algorithms and their HPs meaining. In addition, it has been found that 
 a manual procedure is ineffective for several problems due to different factors, such as the high dimensionality 
 of the hyperparameter space, the presence of complex interactions between hyperparameters, and the computational 
-cost of exhaustively evaluating all possible combinations \cite{YANG2020295}. For this reasons, manual testing
+cost of exhaustively evaluating all possible combinations \cite{YANG2020295}. For this reason, manual testing
 was discarded in favor of using a search algorithm.
 
+\noindent
 Formally, a HPs optimization problem aims to find the HPs configuration $\bm{x}^* \in X$ such that:
 $$ \bm{x}^* = \text{arg}\underset{\bm{x}\in X}{\min}f(\bm{x}) $$
 where $X$ is the search space containing all the possible hyperparameter configurations, and $f$ is the
@@ -41,8 +42,7 @@ Grid search is the most straightforward hyperparameter tuning algorithm. It disc
 hyperparameter and evaluates all possible combinations. The combination that yields the best average performance 
 is selected as the optimal set of hyperparameters.
 
-The well-performance regions cannot be detected, however, to
-identify the global optimums, the following procedure can be performed:
+It may happen that the well-performance regions cannot be detected, however, to identify the global optimums, the following procedure can be performed:
 \begin{enumerate}
     \item Start with a large search space and step size;
     \item Narrow the search space and step size based on the best performance regions found on the previous step;

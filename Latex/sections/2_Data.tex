@@ -1,11 +1,10 @@
 \section{Data}
 To train our models, a dataset derived from 309 robot exploring simulations will be used.
-\subsection{Dataset composition}
 The dataset is composed of 4613 datapoints. Each datapoint is represented as a tuple $$(M, a, ate, are)$$
 where:
 \begin{enumerate}
-    \item $M\in[0,255]^{n\times n}$: robot maps representend as grayscale maps that a robot has obtained 
-        during its navigation. Some examples are reported in Figure \ref{fig:floorplans};
+    \item $M\in[0,255]^{n\times n}$: robot maps representend as $n \times n$ grayscale maps that a robot has
+    obtained during its navigation. Some examples are reported in Figure \ref{fig:floorplans};
     \item $a\in\mathbb{R}^+$: area measurements of the floorplan images, expressed in $m^2$;
     \item $ate\in\mathbb{R}^+$: ATE values, expressed in $m$;
     \item $are\in\mathbb{R}^+$: ARE values, expressed in $rad$;

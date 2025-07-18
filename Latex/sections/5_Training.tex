@@ -67,8 +67,9 @@ Regarding efficiency, in terms of inference time and model size, shown in Table 
 
 MobileNetV3 turns out to be, in general, the fastest model with the lowest CPU time and a slightly slower GPU than AlexNet, which, counterintuitively, is the fastest in terms of GPU time. The latter fact is mainly due to the simple structure of the model, consisting of only basic operations that are highly optimized in modern GPU.
 
-So, overall, MobileNetV3 finishes as the most efficient model among those seen in this work.
-
+\noindent
+Overall, MobileNetV3 finishes as the most efficient model among those seen in this work.
+\noindent
 Inference times were calculated by averaging the individual datapoint inference times over the test set. Only  batchs of one element are used. This because we wanted to analyze inference times in real time applications, where what matters is immediate responsiveness and not throughput.
 
 \begin{table}[H]

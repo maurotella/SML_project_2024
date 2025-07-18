@@ -28,6 +28,7 @@ The choice of the last two architectures is aimed at achieving a lightweight pre
 usage and computational requirements, making them suitable for real-time applications where resources are 
 constrained.
 
+\noindent
 Formally, the model $h$ we aim to learn can be expressed as follows:
 $$ h: [0,255]^{n\times n} \times \mathbb{R}^+ \rightarrow \mathbb{R}^2 $$
 where $[0,255]^{n\times n}$ is a robot map encoded as an $n\times n$ grayscale image, $\mathbb{R}^+$ 
@@ -39,7 +40,7 @@ To begin, a model based on AlexNet was chosen, one of the first successful archi
 convolutional neural networks. AlexNet consists of several convolutional layers followed by fully 
 connected layers, using ReLU activations and max-pooling. The relatively large number of layers without 
 the use of modern techniques to lighten its computational load, makes this model a deep CNN resulting in
-a high number of parameters ($\approx\num{37298882}$).
+a high number of parameters ($\approx\num{37}$ M).
 The abstract structure is shown on Figure
 \ref{fig:AlexNet}.
 
@@ -76,7 +77,7 @@ relying too heavily on specific features.
 Computational requirements that AlexNet needs make it unsuitable for hardware used in mobile robotics. For this
 reason, MobileNetV3 was selected as a more efficient alternative, offering a state-of-the-art trade-off between 
 accuracy and computational efficiency. In particular, the
-MobileNetV3 small version was used as starting point, which has $\approx$\num{1520642} parameters, 24 times less 
+MobileNetV3 small version was used as starting point, which has $\approx$1.5M parameters, 24 times less 
 than AlexNet.
 
 
@@ -191,7 +192,7 @@ As final model SqueezeNet was choosen. SqueezeNet is an ultra-compact convolutio
 architecture designed to achieve AlexNet-level accuracy with significantly fewer parameters, as the
 original paper title \quotes{AlexNet-level accuracy with 50x fewer parameters and <0.5MB model size} 
 \cite{iandola2016squeezenetalexnetlevelaccuracy50x} suggests; as proof of this, the model that was used, 
-derived from a minor modification of SqueezeNet v1.1, has $\approx$\num{722740} params, $\sim$51.6 times less than 
+derived from a minor modification of SqueezeNet v1.1, has $\approx$700k params, $\sim$50 times less than 
 AlexNet models described in section \ref{sec:AlexNet}. 
 The few parameters of SqueezeNet also led to a large reduction in power consumption and inference time,
 making it one of the most widely used architectures in various fields such as autonomous driving, IoT, 
