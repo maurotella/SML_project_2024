@@ -104,6 +104,8 @@ After rechecking the data, it was found that in many cases the ATE values, used 
 \end{figure}
 
 \noindent
-In this way, all datapoints that fall into this situation, are inconsistent. With a quick test it turned out that the inconsistent datapoints are $\sim$22\% of the dataset and this probably led the RMSE (Table \ref{tab:r2score}) to be so high.
+In this way, all datapoints that fall into this situation, are inconsistent. With a quick test it turned out that the inconsistent datapoints are $\sim$22\% of the dataset and, combined with the presence of accurate maps but low ATE, probably led the RMSE (Table \ref{tab:r2score}) to be so high.
+
+Another finding is that although we typically consider ATE and ARE to be two stable measures, in an online analysis they do not prove to be so, showing strong variance in many simulations.
 
 A final investigation found that detecting whether a map is accurate or not, is still an open problem; Birk \cite{birk2010quantitative} introduced the concept of brokeness which aims to quantitatively assess the quality of SLAM-generated maps. Although this metric is useful for a discussion of map quality, it remains a qualitative tool. So, the only accurate way to understand if a map is accurate or not is through manual supervision. For this reason, cleaning this type of dataset is a time-consuming task.
