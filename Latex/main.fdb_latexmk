@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber main"] 1752875767.31526 "main.bcf" "main.bbl" "main" 1752951508.00399 0
+["biber main"] 1752875767.31526 "main.bcf" "main.bbl" "main" 1753009876.72763 0
   "bibl.bib" 1752572934 9692 c554e97dac3ebc0c2361b454bd0e4eb3 ""
-  "main.bcf" 1752951507 109194 e30ab7d34de84050935cc4579ff47d74 "pdflatex"
+  "main.bcf" 1753009876 109194 e30ab7d34de84050935cc4579ff47d74 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1752951504.94239 "d:/OneDrive - Università degli Studi di Milano/Università/Magistrale/Statistical methods for machine learning/Progetto/Git/Latex/main.tex" "main.pdf" "main" 1752951508.00474 0
+["pdflatex"] 1753009873.37568 "d:/OneDrive - Università degli Studi di Milano/Università/Magistrale/Statistical methods for machine learning/Progetto/Git/Latex/main.tex" "main.pdf" "main" 1753009876.72835 0
   "C:/Users/mauro/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1752743391 279790 5e1a8079436103bd8d180788c7dc8eb0 ""
   "C:/Users/mauro/AppData/Local/MiKTeX/fonts/tfm/public/stmaryrd/stmary10.tfm" 1750895977 848 f478e0761563bbc369eca609a1741348 ""
   "C:/Users/mauro/AppData/Local/MiKTeX/fonts/tfm/public/stmaryrd/stmary5.tfm" 1750895980 848 e1bc58a31b9ed9c3729ffea165acfaac ""
@@ -329,7 +329,7 @@
   "C:/Users/mauro/AppData/Local/Programs/MiKTeX/tex/latex/varwidth/varwidth.sty" 1238469540 10894 d359a13923460b2a73d4312d613554c8 ""
   "C:/Users/mauro/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
   "C:/Users/mauro/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/xkeyval.sty" 1656236919 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
-  "d:/OneDrive - Università degli Studi di Milano/Università/Magistrale/Statistical methods for machine learning/Progetto/Git/Latex/main.tex" 1751681008 2087 638766f991c44cf7dc3dbbb844dd66a9 ""
+  "d:/OneDrive - Università degli Studi di Milano/Università/Magistrale/Statistical methods for machine learning/Progetto/Git/Latex/main.tex" 1753009872 2095 2497fa96d892ab99dd63ba0e8596c8b0 ""
   "figures/APE.pdf" 1747828604 28620 1285feb0e5360d7d80282ab79cff144b ""
   "figures/APE_box.pdf" 1751573156 110202 42e2fecbd725d4ecda192f5a413eeb39 ""
   "figures/APE_norm_hist.pdf" 1750709621 112833 31a7eb31401a20d8943bb66a9a57c114 ""
@@ -348,12 +348,12 @@
   "figures/notSquaredMap.png" 1750634083 16710 245ec4a33104b0b8939d1aa894ce589a ""
   "figures/squaredMap.png" 1750635279 10366 b63eec3a7f133bc3103ebd91a008856d ""
   "figures/trajectories.pdf" 1747823090 52298 8790ad758f9dd79f621a4f8a2599d6d9 ""
-  "main.aux" 1752951507 14082 19b29e666aa0eed9e686d4c148465873 "pdflatex"
+  "main.aux" 1753009876 14082 19b29e666aa0eed9e686d4c148465873 "pdflatex"
   "main.bbl" 1752875769 32202 eb1ba31eaa5cd957e6b2f186ab3a0879 "biber main"
-  "main.out" 1752951507 4426 14534be1c49457eff12cd395b883e976 "pdflatex"
-  "main.run.xml" 1752951507 2299 8578a4f8b22416835e1a38ffb3b58c2c "pdflatex"
-  "main.tex" 1751681008 2087 638766f991c44cf7dc3dbbb844dd66a9 ""
-  "main.toc" 1752951507 2654 d4b2605d275a2daf9623b0526f7ec387 "pdflatex"
+  "main.out" 1753009876 4426 14534be1c49457eff12cd395b883e976 "pdflatex"
+  "main.run.xml" 1753009876 2299 8578a4f8b22416835e1a38ffb3b58c2c "pdflatex"
+  "main.tex" 1753009872 2095 2497fa96d892ab99dd63ba0e8596c8b0 ""
+  "main.toc" 1753009876 2654 d4b2605d275a2daf9623b0526f7ec387 "pdflatex"
   "sections/1_Introduction.tex" 1752871425 6680 5741f4a5344f5f57024970aba1b47da9 ""
   "sections/2_Data.tex" 1752875744 5947 7d85136ed2a3bfe38a6d32f47d8c3c34 ""
   "sections/3_Model.tex" 1752877982 15008 922077362061e7c1b35e32328c7718a4 ""
